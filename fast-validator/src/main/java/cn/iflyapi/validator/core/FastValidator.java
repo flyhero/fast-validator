@@ -84,10 +84,8 @@ public class FastValidator {
             Object o = validatorElement.getValue();
             int min = validatorElement.getMin();
             int max = validatorElement.getMax();
-            if (ReflectUtils.isNumber(o)) {
-                ValidatorUtils.checkNumber(o,min,max);
-            } else if (ReflectUtils.isString(o)) {
-                ValidatorUtils.checkStr(o, min, max);
+            if (ReflectUtils.isNumber(o)  || ReflectUtils.isString(o)) {
+                ValidatorUtils.checkRange(o, min, max);
             }
         });
     }

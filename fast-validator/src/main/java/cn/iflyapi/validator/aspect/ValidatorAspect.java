@@ -95,7 +95,7 @@ public class ValidatorAspect {
                 int max = strRange.max();
                 //如果设置了min或max
                 if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
-                    ValidatorUtils.checkStr(o, min, max);
+                    ValidatorUtils.checkRange(o, min, max);
                 } else {
                     String range = strRange.range();
 
@@ -128,7 +128,7 @@ public class ValidatorAspect {
                 int max = numRange.max();
                 //如果设置了min或max
                 if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
-                    ValidatorUtils.checkNumber(o, min, max);
+                    ValidatorUtils.checkRange(o, min, max);
                 } else {
                     String range = numRange.range();
 
