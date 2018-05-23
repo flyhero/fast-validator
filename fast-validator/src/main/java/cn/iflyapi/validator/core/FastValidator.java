@@ -41,6 +41,7 @@ public class FastValidator {
 
     /**
      * 添加验证元素
+     *
      * @param target
      * @param min
      * @param max
@@ -51,8 +52,37 @@ public class FastValidator {
         return this;
     }
 
-    public void end(){
+    /**
+     * 验证最小值
+     *
+     * @param target
+     * @param min
+     * @return
+     */
+    public FastValidator onMin(Object target, int min) {
+        return on(target, min, Integer.MAX_VALUE);
+    }
+
+    /**
+     * 验证最大值
+     *
+     * @param target
+     * @param max
+     * @return
+     */
+    public FastValidator onMax(Object target, int max) {
+        return on(target, Integer.MIN_VALUE, max);
+    }
+
+
+    public void end() {
         for (ValidatorElement validatorElement : veLsit) {
+            Object o = validatorElement.getValue();
+            if (ReflectUtils.isNumber(o)) {
+
+            } else if (ReflectUtils.isString(o)) {
+
+            }
         }
     }
 }

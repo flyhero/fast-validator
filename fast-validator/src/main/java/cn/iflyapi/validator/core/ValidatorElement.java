@@ -1,5 +1,7 @@
 package cn.iflyapi.validator.core;
 
+import java.util.Objects;
+
 /**
  * 待验证元素
  * @author flyhero <http://www.iflyapi.cn>
@@ -12,7 +14,7 @@ public class ValidatorElement {
     private int max;
 
     public ValidatorElement(Object value, int min, int max) {
-        this.value = value;
+        this.value = Objects.requireNonNull(value);
         this.min = min;
         this.max = max;
     }
