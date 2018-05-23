@@ -79,7 +79,8 @@ public class FastValidator {
      * 结束并验证
      */
     public void end() {
-        for (ValidatorElement validatorElement : veLsit) {
+
+        veLsit.forEach(validatorElement -> {
             Object o = validatorElement.getValue();
             int min = validatorElement.getMin();
             int max = validatorElement.getMax();
@@ -88,6 +89,6 @@ public class FastValidator {
             } else if (ReflectUtils.isString(o)) {
                 ValidatorUtils.checkStr(o, min, max);
             }
-        }
+        });
     }
 }
