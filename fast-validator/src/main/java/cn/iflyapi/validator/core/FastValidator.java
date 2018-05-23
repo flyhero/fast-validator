@@ -2,6 +2,7 @@ package cn.iflyapi.validator.core;
 
 import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ReflectUtils;
+import cn.iflyapi.validator.util.ValidatorUtils;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -40,7 +41,7 @@ public class FastValidator {
     }
 
     /**
-     * 添加验证元素
+     * 添加验证元素(包含最大小值)
      *
      * @param target
      * @param min
@@ -74,14 +75,18 @@ public class FastValidator {
         return on(target, Integer.MIN_VALUE, max);
     }
 
-
+    /**
+     * 结束并验证
+     */
     public void end() {
         for (ValidatorElement validatorElement : veLsit) {
             Object o = validatorElement.getValue();
+            int min = validatorElement.getMin();
+            int max = validatorElement.getMax();
             if (ReflectUtils.isNumber(o)) {
-
+                ValidatorUtils.checkNumber(o,min,max);
             } else if (ReflectUtils.isString(o)) {
-
+                ValidatorUtils.checkStr(o, min, max);
             }
         }
     }

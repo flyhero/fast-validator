@@ -7,6 +7,7 @@ import cn.iflyapi.validator.annotation.StrRange;
 import cn.iflyapi.validator.annotation.Validator;
 import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ReflectUtils;
+import cn.iflyapi.validator.util.ValidatorUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -94,21 +95,7 @@ public class ValidatorAspect {
                 int max = strRange.max();
                 //如果设置了min或max
                 if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
-                    if (min != Integer.MIN_VALUE && max != Integer.MAX_VALUE) {
-                        if (String.valueOf(o).length() <= min && String.valueOf(o).length() >= max) {
-                            throw new FastValidatorException(field + " length can not in between " + min + " and " + max);
-                        }
-                    }
-                    if (min != Integer.MIN_VALUE) {
-                        if (String.valueOf(o).length() < min) {
-                            throw new FastValidatorException(field + " length can not less than " + min);
-                        }
-                    }
-                    if (min == Integer.MIN_VALUE) {
-                        if (String.valueOf(o).length() > max) {
-                            throw new FastValidatorException(field + " length can not greater than " + max);
-                        }
-                    }
+                    ValidatorUtils.checkStr(o, min, max);
                 } else {
                     String range = strRange.range();
 
@@ -137,27 +124,11 @@ public class ValidatorAspect {
                     throw new FastValidatorException(field + " can not be null");
                 }
 
-                //TODO 这里把所有类型都强制转换为int，存在一定隐患
-                int targetInt = (int) o;
                 int min = numRange.min();
                 int max = numRange.max();
                 //如果设置了min或max
                 if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
-                    if (min != Integer.MIN_VALUE && max != Integer.MAX_VALUE) {
-                        if (targetInt <= min || targetInt >= max) {
-                            throw new FastValidatorException(field + " not in between " + min + "and " + max);
-                        }
-                    }
-                    if (min != Integer.MIN_VALUE) {
-                        if (targetInt < min) {
-                            throw new FastValidatorException(field + " can not less than " + min);
-                        }
-                    }
-                    if (min == Integer.MIN_VALUE) {
-                        if (targetInt > max) {
-                            throw new FastValidatorException(field + " can not greater than " + max);
-                        }
-                    }
+                    ValidatorUtils.checkNumber(o, min, max);
                 } else {
                     String range = numRange.range();
 
