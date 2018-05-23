@@ -5,7 +5,7 @@ import cn.iflyapi.validator.annotation.NotNull;
 import cn.iflyapi.validator.annotation.NumRange;
 import cn.iflyapi.validator.annotation.StrRange;
 import cn.iflyapi.validator.annotation.Validator;
-import cn.iflyapi.validator.exception.FlyValidatorException;
+import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ReflectUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -82,7 +82,7 @@ public class ValidatorAspect {
                 }
                 Object o = ReflectUtils.fieldValue(b, field1);
                 if (Objects.isNull(o)) {
-                    throw new FlyValidatorException(field + " can not be null");
+                    throw new FastValidatorException(field + " can not be null");
                 }
 
                 System.out.println(o.getClass().getTypeName());
@@ -96,17 +96,17 @@ public class ValidatorAspect {
                 if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
                     if (min != Integer.MIN_VALUE && max != Integer.MAX_VALUE) {
                         if (String.valueOf(o).length() <= min && String.valueOf(o).length() >= max) {
-                            throw new FlyValidatorException(field + " length can not in between " + min + " and " + max);
+                            throw new FastValidatorException(field + " length can not in between " + min + " and " + max);
                         }
                     }
                     if (min != Integer.MIN_VALUE) {
                         if (String.valueOf(o).length() < min) {
-                            throw new FlyValidatorException(field + " length can not less than " + min);
+                            throw new FastValidatorException(field + " length can not less than " + min);
                         }
                     }
                     if (min == Integer.MIN_VALUE) {
                         if (String.valueOf(o).length() > max) {
-                            throw new FlyValidatorException(field + " length can not greater than " + max);
+                            throw new FastValidatorException(field + " length can not greater than " + max);
                         }
                     }
                 } else {
@@ -134,7 +134,7 @@ public class ValidatorAspect {
                 Object o = ReflectUtils.fieldValue(b, field1);
 
                 if (Objects.isNull(o)) {
-                    throw new FlyValidatorException(field + " can not be null");
+                    throw new FastValidatorException(field + " can not be null");
                 }
 
                 //TODO 这里把所有类型都强制转换为int，存在一定隐患
@@ -145,17 +145,17 @@ public class ValidatorAspect {
                 if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
                     if (min != Integer.MIN_VALUE && max != Integer.MAX_VALUE) {
                         if (targetInt <= min || targetInt >= max) {
-                            throw new FlyValidatorException(field + " not in between " + min + "and " + max);
+                            throw new FastValidatorException(field + " not in between " + min + "and " + max);
                         }
                     }
                     if (min != Integer.MIN_VALUE) {
                         if (targetInt < min) {
-                            throw new FlyValidatorException(field + " can not less than " + min);
+                            throw new FastValidatorException(field + " can not less than " + min);
                         }
                     }
                     if (min == Integer.MIN_VALUE) {
                         if (targetInt > max) {
-                            throw new FlyValidatorException(field + " can not greater than " + max);
+                            throw new FastValidatorException(field + " can not greater than " + max);
                         }
                     }
                 } else {
@@ -185,19 +185,19 @@ public class ValidatorAspect {
         Integer max = Integer.valueOf(values[1].replace(")", "").replace("]", ""));
         if (left.equals(Operation.LEFT_CLOSE) && right.equals(Operation.RIGHT_CLOSE)) {
             if (String.valueOf(o).length() < min || String.valueOf(o).length() > max) {
-                throw new FlyValidatorException(field + " not in " + range);
+                throw new FastValidatorException(field + " not in " + range);
             }
         } else if (left.equals(Operation.LEFT_CLOSE) && right.equals(Operation.RIGHT_OPEN)) {
             if (String.valueOf(o).length() < min || String.valueOf(o).length() >= max) {
-                throw new FlyValidatorException(field + " not in " + range);
+                throw new FastValidatorException(field + " not in " + range);
             }
         } else if (left.equals(Operation.LEFT_OPEN) && right.equals(Operation.RIGHT_OPEN)) {
             if (String.valueOf(o).length() <= min || String.valueOf(o).length() >= max) {
-                throw new FlyValidatorException(field + " not in " + range);
+                throw new FastValidatorException(field + " not in " + range);
             }
         } else if (left.equals(Operation.LEFT_OPEN) && right.equals(Operation.RIGHT_CLOSE)) {
             if (String.valueOf(o).length() <= min || String.valueOf(o).length() > max) {
-                throw new FlyValidatorException(field + " not in " + range);
+                throw new FastValidatorException(field + " not in " + range);
             }
         }
 
@@ -220,19 +220,19 @@ public class ValidatorAspect {
         int targetInt = (int) o;
         if (left.equals(Operation.LEFT_CLOSE) && right.equals(Operation.RIGHT_CLOSE)) {
             if (targetInt < min || targetInt > max) {
-                throw new FlyValidatorException(field + " not in " + range);
+                throw new FastValidatorException(field + " not in " + range);
             }
         } else if (left.equals(Operation.LEFT_CLOSE) && right.equals(Operation.RIGHT_OPEN)) {
             if (targetInt < min || targetInt >= max) {
-                throw new FlyValidatorException(field + " not in " + range);
+                throw new FastValidatorException(field + " not in " + range);
             }
         } else if (left.equals(Operation.LEFT_OPEN) && right.equals(Operation.RIGHT_OPEN)) {
             if (targetInt <= min || targetInt >= max) {
-                throw new FlyValidatorException(field + " not in " + range);
+                throw new FastValidatorException(field + " not in " + range);
             }
         } else if (left.equals(Operation.LEFT_OPEN) && right.equals(Operation.RIGHT_CLOSE)) {
             if (targetInt <= min || targetInt > max) {
-                throw new FlyValidatorException(field + " not in " + range);
+                throw new FastValidatorException(field + " not in " + range);
             }
         }
     }
@@ -260,7 +260,7 @@ public class ValidatorAspect {
             }
             Object o = ReflectUtils.fieldValue(target, field);
             if (Objects.isNull(o)) {
-                throw new FlyValidatorException(s + " can not be null");
+                throw new FastValidatorException(s + " can not be null");
             }
 
         }
