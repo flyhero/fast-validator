@@ -2,8 +2,7 @@ package cn.iflyapi.validator.aspect;
 
 
 import cn.iflyapi.validator.annotation.NotNull;
-import cn.iflyapi.validator.annotation.NumRange;
-import cn.iflyapi.validator.annotation.StrRange;
+import cn.iflyapi.validator.annotation.Range;
 import cn.iflyapi.validator.annotation.Validator;
 import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ReflectUtils;
@@ -44,11 +43,9 @@ public class ValidatorAspect {
         NotNull notNull = validator.notNull();
         String[] vs = notNull.value();
 
-        StrRange[] strRanges = validator.strRange();
+        Range[] ranges = validator.range();
 
-        NumRange[] numRanges = validator.numRange();
-
-        isValid(targetObj, vs, strRanges, numRanges);
+        isValid(targetObj, vs, ranges);
 
         return joinPoint.proceed();
     }
@@ -58,83 +55,52 @@ public class ValidatorAspect {
      *
      * @param targetObj
      * @param vs
-     * @param strRanges
-     * @param numRanges
+     * @param ranges
      */
-    private void isValid(Object[] targetObj, String[] vs, StrRange[] strRanges, NumRange[] numRanges) {
+    private void isValid(Object[] targetObj, String[] vs, Range[] ranges) {
         for (Object b : targetObj) {
             Class<?> targetClass = b.getClass();
-            if (targetClass.isPrimitive()) {
-                continue;
-            }
-            checkNull(vs, b);
+            if (ReflectUtils.isNumber(b) || ReflectUtils.isString(b)) {
 
-            for (StrRange strRange : strRanges) {
+            } else { //TODO 判断非布尔和字符
+                checkNull(vs, b);
 
-                String field = strRange.value();
-                if (!ReflectUtils.hasField(targetClass, field)) {
-                    continue;
-                }
-                Field field1 = null;
-                try {
-                    field1 = targetClass.getDeclaredField(field);
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                }
-                Object o = ReflectUtils.fieldValue(b, field1);
-                if (Objects.isNull(o)) {
-                    throw new FastValidatorException(field + " can not be null");
-                }
+                for (Range range : ranges) {
+                    String field = range.value();
+                    if (!ReflectUtils.hasField(targetClass, field)) {
+                        continue;
+                    }
+                    Field field1 = null;
+                    try {
+                        field1 = targetClass.getDeclaredField(field);
+                    } catch (NoSuchFieldException e) {
+                        e.printStackTrace();
+                    }
+                    if (!ReflectUtils.isNumber(field1) && !field1.getType().getName().equals(ReflectUtils.STRING_TYPE_NAME)) {
+                        continue;
+                    }
+                    Object o = ReflectUtils.fieldValue(b, field1);
 
-                System.out.println(o.getClass().getTypeName());
-                //如果不是字符串
-                if (!o.getClass().getTypeName().equals("java.lang.String")) {
-                    continue;
-                }
-                int min = strRange.min();
-                int max = strRange.max();
-                //如果设置了min或max
-                if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
-                    ValidatorUtils.checkRange(o, min, max);
-                } else {
-                    String range = strRange.range();
+                    if (Objects.isNull(o)) {
+                        throw new FastValidatorException(field + " can not be null");
+                    }
 
-                    checkStrRange(o, range, field);
-                }
-
-            }
-
-            for (NumRange numRange : numRanges) {
-                String field = numRange.value();
-                if (!ReflectUtils.hasField(targetClass, field)) {
-                    continue;
-                }
-                Field field1 = null;
-                try {
-                    field1 = targetClass.getDeclaredField(field);
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                }
-                if (!ReflectUtils.isNumber(field1)) {
-                    continue;
-                }
-                Object o = ReflectUtils.fieldValue(b, field1);
-
-                if (Objects.isNull(o)) {
-                    throw new FastValidatorException(field + " can not be null");
-                }
-
-                int min = numRange.min();
-                int max = numRange.max();
-                //如果设置了min或max
-                if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
-                    ValidatorUtils.checkRange(o, min, max);
-                } else {
-                    String range = numRange.range();
-
-                    checkNumRange(o, range, field);
+                    int min = range.min();
+                    int max = range.max();
+                    //如果设置了min或max
+                    if (min != Integer.MIN_VALUE || max != Integer.MAX_VALUE) {
+                        ValidatorUtils.checkRange(o, min, max);
+                    } else {
+                        String srange = range.range();
+                        if (ReflectUtils.isNumber(field1)) {
+                            checkNumRange(o, srange, field);
+                        } else {
+                            checkStrRange(o, srange, field);
+                        }
+                    }
                 }
             }
+
 
         }
 
@@ -154,23 +120,8 @@ public class ValidatorAspect {
         String[] values = range.split(",");
         Integer min = Integer.valueOf(values[0].replace("(", "").replace("[", ""));
         Integer max = Integer.valueOf(values[1].replace(")", "").replace("]", ""));
-        if (left.equals(Operation.LEFT_CLOSE) && right.equals(Operation.RIGHT_CLOSE)) {
-            if (String.valueOf(o).length() < min || String.valueOf(o).length() > max) {
-                throw new FastValidatorException(field + " not in " + range);
-            }
-        } else if (left.equals(Operation.LEFT_CLOSE) && right.equals(Operation.RIGHT_OPEN)) {
-            if (String.valueOf(o).length() < min || String.valueOf(o).length() >= max) {
-                throw new FastValidatorException(field + " not in " + range);
-            }
-        } else if (left.equals(Operation.LEFT_OPEN) && right.equals(Operation.RIGHT_OPEN)) {
-            if (String.valueOf(o).length() <= min || String.valueOf(o).length() >= max) {
-                throw new FastValidatorException(field + " not in " + range);
-            }
-        } else if (left.equals(Operation.LEFT_OPEN) && right.equals(Operation.RIGHT_CLOSE)) {
-            if (String.valueOf(o).length() <= min || String.valueOf(o).length() > max) {
-                throw new FastValidatorException(field + " not in " + range);
-            }
-        }
+        int num = String.valueOf(o).length();
+        parse(num, left, right, min, max, range, field);
 
     }
 
@@ -189,25 +140,29 @@ public class ValidatorAspect {
         Integer min = Integer.valueOf(values[0].replace("(", "").replace("[", ""));
         Integer max = Integer.valueOf(values[1].replace(")", "").replace("]", ""));
         int targetInt = (int) o;
-        if (left.equals(Operation.LEFT_CLOSE) && right.equals(Operation.RIGHT_CLOSE)) {
+        parse(targetInt, left, right, min, max, range, field);
+    }
+
+
+    public void parse(int targetInt, String left, String right, int min, int max, String range, String field) {
+        if (left.equals(ValidatorAspect.Operation.LEFT_CLOSE) && right.equals(ValidatorAspect.Operation.RIGHT_CLOSE)) {
             if (targetInt < min || targetInt > max) {
                 throw new FastValidatorException(field + " not in " + range);
             }
-        } else if (left.equals(Operation.LEFT_CLOSE) && right.equals(Operation.RIGHT_OPEN)) {
+        } else if (left.equals(ValidatorAspect.Operation.LEFT_CLOSE) && right.equals(ValidatorAspect.Operation.RIGHT_OPEN)) {
             if (targetInt < min || targetInt >= max) {
                 throw new FastValidatorException(field + " not in " + range);
             }
-        } else if (left.equals(Operation.LEFT_OPEN) && right.equals(Operation.RIGHT_OPEN)) {
+        } else if (left.equals(ValidatorAspect.Operation.LEFT_OPEN) && right.equals(ValidatorAspect.Operation.RIGHT_OPEN)) {
             if (targetInt <= min || targetInt >= max) {
                 throw new FastValidatorException(field + " not in " + range);
             }
-        } else if (left.equals(Operation.LEFT_OPEN) && right.equals(Operation.RIGHT_CLOSE)) {
+        } else if (left.equals(ValidatorAspect.Operation.LEFT_OPEN) && right.equals(ValidatorAspect.Operation.RIGHT_CLOSE)) {
             if (targetInt <= min || targetInt > max) {
                 throw new FastValidatorException(field + " not in " + range);
             }
         }
     }
-
 
     interface Operation {
         String LEFT_OPEN = "(";
@@ -215,7 +170,6 @@ public class ValidatorAspect {
         String LEFT_CLOSE = "[";
         String RIGHT_CLOSE = "]";
     }
-
 
     public void checkNull(String[] vs, Object target) {
         for (String s : vs) {
