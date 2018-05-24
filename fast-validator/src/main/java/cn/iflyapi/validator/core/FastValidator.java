@@ -1,6 +1,7 @@
 package cn.iflyapi.validator.core;
 
 import cn.iflyapi.validator.exception.FastValidatorException;
+import cn.iflyapi.validator.util.ArrayUtils;
 import cn.iflyapi.validator.util.ReflectUtils;
 import cn.iflyapi.validator.util.ValidatorUtils;
 import org.springframework.util.ReflectionUtils;
@@ -17,6 +18,7 @@ public class FastValidator {
 
     private List<ValidatorElement> veLsit = new ArrayList<>();
 
+    private String[] notNullStrs = null;
 
     /**
      * 构建验证器
@@ -32,12 +34,9 @@ public class FastValidator {
      *
      * @param strings
      */
-    public void notNull(String... strings) {
-        for (String s : strings) {
-            if (StringUtils.isEmpty(s)) {
-                throw new FastValidatorException(s + " can not be null or \" \"");
-            }
-        }
+    public FastValidator notNull(String... strings) {
+        notNullStrs = strings;
+        return this;
     }
 
     /**
@@ -79,6 +78,14 @@ public class FastValidator {
      * 结束并验证
      */
     public void end() {
+
+        if( null != notNullStrs){
+            for (String s : notNullStrs) {
+                if (StringUtils.isEmpty(s)) {
+                    throw new FastValidatorException(s + " can not be null or \" \"");
+                }
+            }
+        }
 
         veLsit.forEach(validatorElement -> {
             Object o = validatorElement.getValue();

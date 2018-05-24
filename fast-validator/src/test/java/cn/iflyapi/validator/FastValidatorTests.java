@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class FastValidatorTests {
 
     @Test
-    public void testOnNumber(){
+    public void testOnNumber() {
         int num = 10;
         Double d = 20.5d;
         FastValidator.start().on(num, 1, 10).end();
@@ -24,10 +24,21 @@ public class FastValidatorTests {
     }
 
     @Test
-    public void testOnStr(){
+    public void testOnStr() {
         String s = "hello world";
         String s1 = "welcome to iflyapi";
-        FastValidator.start().on(s, 1, 20).on(s1,1,8).end();
+        FastValidator.start().on(s, 1, 20).on(s1, 1, 8).end();
         FastValidator.start().on(s, 1, 10).end();
+    }
+
+    @Test
+    public void testNull() {
+        FastValidator.start().notNull("nihao", "haha", null).end();
+    }
+
+    @Test
+    public void testOnMin(){
+        int num = 10;
+        FastValidator.start().onMin(num,2).onMax(num,9).end();
     }
 }
