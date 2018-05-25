@@ -67,19 +67,15 @@ public class ValidatorAspect {
 
                 for (Range range : ranges) {
                     String field = range.value();
-                    if (!ReflectUtils.hasField(targetClass, field)) {
+                    if (!ReflectUtils.hasFieldIncludeSuper(targetClass, field)) {
                         continue;
                     }
-                    Field field1 = null;
-                    try {
-                        field1 = targetClass.getDeclaredField(field);
-                    } catch (NoSuchFieldException e) {
-                        e.printStackTrace();
-                    }
+                    Field field1 = ReflectUtils.getAllDeclaredField(b, field);
+
                     if (!ReflectUtils.isNumber(field1) && !field1.getType().getName().equals(ReflectUtils.STRING_TYPE_NAME)) {
                         continue;
                     }
-                    Object o = ReflectUtils.fieldValue(b, field1);
+                    Object o = ReflectUtils.fieldValueSuper(b,field);
 
                     if (Objects.isNull(o)) {
                         throw new FastValidatorException(field + " can not be null");
