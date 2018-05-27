@@ -1,6 +1,7 @@
 package cn.iflyapi.validator.aspect;
 
 import cn.iflyapi.validator.annotation.NotNull;
+import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ReflectUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -8,6 +9,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 /**
  * @author: qfwang
@@ -35,8 +38,12 @@ public class NotNullAspect {
             System.out.println(o.getClass().getName());
             System.out.println(o.getClass().getTypeName());
             for (String s : vs) {
-                if (!ReflectUtils.hasField(o.getClass(), s)) {
+                if (!ReflectUtils.hasFieldIncludeSuper(o.getClass(), s)) {
                     continue;
+                }
+                Object b = ReflectUtils.fieldValueSuper(o,s);
+                if (Objects.isNull(b)) {
+                    throw new FastValidatorException(s +" can not be null");
                 }
             }
         }

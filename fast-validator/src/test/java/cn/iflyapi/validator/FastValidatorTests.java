@@ -33,7 +33,11 @@ public class FastValidatorTests {
 
     @Test
     public void testNull() {
-        FastValidator.start().notNull("nihao", "haha", null).end();
+      //  FastValidator.start().notNull("nihao", "haha", null).end();
+        Integer integer = new Integer(10);
+        Integer b = null;
+        int c = 0;
+        FastValidator.start().notNull(b).notNull(c).end();
     }
 
     @Test

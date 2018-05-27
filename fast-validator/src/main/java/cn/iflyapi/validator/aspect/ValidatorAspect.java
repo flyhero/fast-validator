@@ -170,7 +170,7 @@ public class ValidatorAspect {
     public void checkNull(String[] vs, Object target) {
         for (String s : vs) {
             //不含有此属性
-            if (!ReflectUtils.hasField(target.getClass(), s)) {
+            if (!ReflectUtils.hasFieldIncludeSuper(target.getClass(), s)) {
                 continue;
             }
             Field field = null;

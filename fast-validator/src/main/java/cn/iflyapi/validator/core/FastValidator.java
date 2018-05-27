@@ -4,11 +4,9 @@ import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ArrayUtils;
 import cn.iflyapi.validator.util.ReflectUtils;
 import cn.iflyapi.validator.util.ValidatorUtils;
-import org.springframework.util.ReflectionUtils;
-import org.springframework.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author flyhero <http://www.iflyapi.cn>
@@ -18,7 +16,7 @@ public class FastValidator {
 
     private List<ValidatorElement> veLsit = new ArrayList<>();
 
-    private String[] notNullStrs = null;
+    private Object[] objects = new Object[0];
 
     /**
      * 构建验证器
@@ -29,13 +27,14 @@ public class FastValidator {
         return new FastValidator();
     }
 
+
     /**
-     * 验证null字符串
+     * 验证null
      *
-     * @param strings
+     * @param objects
      */
-    public FastValidator notNull(String... strings) {
-        notNullStrs = strings;
+    public FastValidator notNull(Object... objects) {
+        this.objects = ArrayUtils.concat(this.objects,objects);
         return this;
     }
 
@@ -79,10 +78,10 @@ public class FastValidator {
      */
     public void end() {
 
-        if( null != notNullStrs){
-            for (String s : notNullStrs) {
-                if (StringUtils.isEmpty(s)) {
-                    throw new FastValidatorException(s + " can not be null or \" \"");
+        if (null != objects) {
+            for (Object o : objects) {
+                if (Objects.isNull(o)) {
+                    throw new FastValidatorException("params can not be null or \" \"");
                 }
             }
         }
@@ -91,7 +90,7 @@ public class FastValidator {
             Object o = validatorElement.getValue();
             int min = validatorElement.getMin();
             int max = validatorElement.getMax();
-            if (ReflectUtils.isNumber(o)  || ReflectUtils.isString(o)) {
+            if (ReflectUtils.isNumber(o) || ReflectUtils.isString(o)) {
                 ValidatorUtils.checkRange(o, min, max);
             }
         });
