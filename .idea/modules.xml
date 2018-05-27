@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/fast-validator/fast-validator.iml" filepath="$PROJECT_DIR$/fast-validator/fast-validator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fast-validator-demo/fast-validator-demo.iml" filepath="$PROJECT_DIR$/fast-validator-demo/fast-validator-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/fast-validator-parent.iml" filepath="$PROJECT_DIR$/fast-validator-parent.iml" />
     </modules>
   </component>
