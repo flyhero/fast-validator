@@ -186,8 +186,8 @@ public class ReflectUtils {
     public static List<Field> allField(Class<?> clazz) {
         List<Field> fieldList = new ArrayList<>();
         for (Class<?> it = clazz; hasSuperClass(it); ) {
-            it = clazz.getSuperclass();
             fieldList.addAll(Arrays.asList(it.getDeclaredFields()));
+            it = clazz.getSuperclass();
         }
         return fieldList;
     }

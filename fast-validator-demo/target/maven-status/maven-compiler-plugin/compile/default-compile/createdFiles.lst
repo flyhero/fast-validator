@@ -1,0 +1,5 @@
+cn/iflyapi/validator/demo/service/IDemoService.class
+cn/iflyapi/validator/demo/controller/DemoController.class
+cn/iflyapi/validator/demo/FastValidatorDemoApplication.class
+cn/iflyapi/validator/demo/service/impl/DemoServiceImpl.class
+cn/iflyapi/validator/demo/dto/UserDTO.class

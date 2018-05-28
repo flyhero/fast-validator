@@ -13,12 +13,10 @@ import org.springframework.stereotype.Service;
  * @date: 2018-05-27 下午1:54
  */
 @Service
-public class DemoServiceImpl implements IDemoService{
+public class DemoServiceImpl implements IDemoService {
 
     @Override
-    @Validator(value = "描述",notNull = @NotNull({"name","password"}),
-            range = {@Range(value = "age",range = "(20,50)"),
-                    @Range(value = "hight",min = 10)})
+    @Validator(value = "描述", notNull = @NotNull({"name", "password"}), range = {@Range(value = "age", range = "(20,50)"), @Range(value = "hight", min = 10)})
     public void setUser(UserDTO user) {
 //        FastValidator.start().notNull(user.getName(),user.getPassword()).end();
         System.out.println(user.toString());

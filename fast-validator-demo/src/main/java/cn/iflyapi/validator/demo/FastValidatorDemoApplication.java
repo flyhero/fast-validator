@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
+//@ComponentScan("cn.iflyapi")
 public class FastValidatorDemoApplication {
 
 	public static void main(String[] args) {

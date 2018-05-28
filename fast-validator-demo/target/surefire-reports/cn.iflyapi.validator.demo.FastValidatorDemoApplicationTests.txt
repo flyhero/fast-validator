@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: cn.iflyapi.validator.demo.FastValidatorDemoApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.179 s - in cn.iflyapi.validator.demo.FastValidatorDemoApplicationTests
