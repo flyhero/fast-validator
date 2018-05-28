@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="27714e51-f701-44e5-92f8-928396e3e562" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/FastValidatorDemoApplication.java" afterPath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/FastValidatorDemoApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/service/impl/DemoServiceImpl.java" afterPath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/service/impl/DemoServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/util/ReflectUtils.java" afterPath="$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/util/ReflectUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,7 +41,7 @@
       <file leaf-file-name="ReflectUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/util/ReflectUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
+            <state relative-caret-position="-1044">
               <caret line="108" column="5" lean-forward="false" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
               <folding>
                 <element signature="e#4907#4908#0" expanded="true" />
@@ -76,8 +74,8 @@
       <file leaf-file-name="FastValidatorDemoApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/FastValidatorDemoApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+            <state relative-caret-position="90">
+              <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -93,14 +91,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DemoServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DemoServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/service/impl/DemoServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="396">
+              <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="456">
+                <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+                <folding>
+                  <marker date="1527486134945" expanded="true" signature="937:1068" ph="..." />
+                </folding>
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -144,10 +157,11 @@
         <option value="$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/util/ReflectUtils.java" />
         <option value="$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/test/DemoServiceImpl.java" />
         <option value="$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/test/TestController.java" />
-        <option value="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/service/impl/DemoServiceImpl.java" />
         <option value="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/FastValidatorDemoApplication.java" />
         <option value="$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/aspect/ValidatorAspect.java" />
         <option value="$PROJECT_DIR$/fast-validator/pom.xml" />
+        <option value="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/service/impl/DemoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -311,11 +325,31 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="validator" type="462c0819:PsiDirectoryNode" />
+              <item name="annotation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="validator" type="462c0819:PsiDirectoryNode" />
               <item name="aspect" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="validator" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
               <item name="fast-validator-demo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -347,60 +381,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="DemoController" type="1a9f42e2:ClassTreeNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-              <item name="DemoServiceImpl" type="1a9f42e2:ClassTreeNode" />
             </path>
           </expand>
           <select />
@@ -682,7 +662,7 @@
       <workItem from="1527128001621" duration="12416000" />
       <workItem from="1527215376074" duration="5647000" />
       <workItem from="1527386754688" duration="7657000" />
-      <workItem from="1527477094738" duration="3736000" />
+      <workItem from="1527477094738" duration="4744000" />
     </task>
     <servers />
   </component>
@@ -719,7 +699,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43696000" />
+    <option name="totallyTimeSpent" value="44704000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -931,16 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/core/ValidatorElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1125,33 +1095,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fast-validator-demo/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/util/ReflectUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="108" column="5" lean-forward="false" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
-          <folding>
-            <element signature="e#4907#4908#0" expanded="true" />
-            <element signature="e#4978#4979#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/FastValidatorDemoApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/aspect/ValidatorAspect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="649">
@@ -1170,11 +1113,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/service/impl/DemoServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="396">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/util/ReflectUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1044">
+          <caret line="108" column="5" lean-forward="false" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
+          <folding>
+            <element signature="e#4907#4908#0" expanded="true" />
+            <element signature="e#4978#4979#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fast-validator-demo/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/FastValidatorDemoApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="456">
+            <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <folding>
+              <marker date="1527486134945" expanded="true" signature="937:1068" ph="..." />
+            </folding>
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
