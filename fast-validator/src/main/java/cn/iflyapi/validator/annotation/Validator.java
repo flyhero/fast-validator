@@ -13,6 +13,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Validator {
     String value() default "";
+
     NotNull notNull() default @NotNull;
+
     Range[] range() default {@Range()};
 }

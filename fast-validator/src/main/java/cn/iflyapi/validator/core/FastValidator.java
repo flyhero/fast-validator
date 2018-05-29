@@ -4,6 +4,7 @@ import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ArrayUtils;
 import cn.iflyapi.validator.util.ReflectUtils;
 import cn.iflyapi.validator.util.ValidatorUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +35,7 @@ public class FastValidator {
      * @param objects
      */
     public FastValidator notNull(Object... objects) {
-        this.objects = ArrayUtils.concat(this.objects,objects);
+        this.objects = ArrayUtils.concat(this.objects, objects);
         return this;
     }
 

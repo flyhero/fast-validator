@@ -3,7 +3,6 @@ package cn.iflyapi.validator.demo.service.impl;
 import cn.iflyapi.validator.annotation.NotNull;
 import cn.iflyapi.validator.annotation.Range;
 import cn.iflyapi.validator.annotation.Validator;
-import cn.iflyapi.validator.core.FastValidator;
 import cn.iflyapi.validator.demo.dto.UserDTO;
 import cn.iflyapi.validator.demo.service.IDemoService;
 import org.springframework.stereotype.Service;

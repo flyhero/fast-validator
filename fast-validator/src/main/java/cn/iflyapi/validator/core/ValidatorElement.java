@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * 待验证元素
+ *
  * @author flyhero <http://www.iflyapi.cn>
  * @date 2018/5/23 下午1:27
  */

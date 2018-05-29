@@ -11,7 +11,10 @@ import java.lang.annotation.*;
 @Documented
 public @interface Range {
     String value() default "";
+
     String range() default "[0,2147483647)";
+
     int min() default Integer.MIN_VALUE;
+
     int max() default Integer.MAX_VALUE;
 }

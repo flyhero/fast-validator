@@ -41,9 +41,9 @@ public class NotNullAspect {
                 if (!ReflectUtils.hasFieldIncludeSuper(o.getClass(), s)) {
                     continue;
                 }
-                Object b = ReflectUtils.fieldValueSuper(o,s);
+                Object b = ReflectUtils.fieldValueSuper(o, s);
                 if (Objects.isNull(b)) {
-                    throw new FastValidatorException(s +" can not be null");
+                    throw new FastValidatorException(s + " can not be null");
                 }
             }
         }

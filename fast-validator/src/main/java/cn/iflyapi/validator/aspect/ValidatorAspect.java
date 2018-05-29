@@ -75,7 +75,7 @@ public class ValidatorAspect {
                     if (!ReflectUtils.isNumber(field1) && !field1.getType().getName().equals(ReflectUtils.STRING_TYPE_NAME)) {
                         continue;
                     }
-                    Object o = ReflectUtils.fieldValueSuper(b,field);
+                    Object o = ReflectUtils.fieldValueSuper(b, field);
 
                     if (Objects.isNull(o)) {
                         throw new FastValidatorException(field + " can not be null");

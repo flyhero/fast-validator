@@ -1,6 +1,5 @@
 package cn.iflyapi.validator;
 
-import cn.iflyapi.validator.core.FastValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

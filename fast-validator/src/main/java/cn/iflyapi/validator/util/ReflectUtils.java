@@ -129,13 +129,14 @@ public class ReflectUtils {
 
     /**
      * 获取属性值（包含父类）
+     *
      * @param targetObj
      * @param field
      * @return
      */
     public static Object fieldValueSuper(Object targetObj, String field) {
         Object value = null;
-        for (Class<?> clazz = targetObj.getClass(); hasSuperClass(clazz);) {
+        for (Class<?> clazz = targetObj.getClass(); hasSuperClass(clazz); ) {
             if (hasField(clazz, field)) {
                 try {
                     Field field1 = targetObj.getClass().getDeclaredField(field);
@@ -156,13 +157,14 @@ public class ReflectUtils {
 
     /**
      * 获取类的属性（包含父类）
+     *
      * @param targetObj
      * @param field
      * @return
      */
     public static Field getAllDeclaredField(Object targetObj, String field) {
         Field field1 = null;
-        for (Class<?> clazz = targetObj.getClass(); hasSuperClass(clazz);) {
+        for (Class<?> clazz = targetObj.getClass(); hasSuperClass(clazz); ) {
             if (hasField(clazz, field)) {
                 try {
                     field1 = targetObj.getClass().getDeclaredField(field);

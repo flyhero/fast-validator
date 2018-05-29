@@ -17,10 +17,13 @@ public class DemoController {
     private IDemoService iDemoService;
 
     @GetMapping("demo")
-    public String test1(){
+    public String test1() {
+
         UserDTO userDTO = new UserDTO();
         userDTO.setName("flyhero");
         iDemoService.setUser(userDTO);
+
         return "ok";
     }
+
 }
