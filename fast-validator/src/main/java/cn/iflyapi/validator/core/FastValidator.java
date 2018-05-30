@@ -19,16 +19,25 @@ public class FastValidator {
 
     private Object[] objects = new Object[0];
 
+    private boolean isFailFast = true;
+
+    public FastValidator(boolean isFailFast) {
+        this.isFailFast = isFailFast;
+    }
+
     /**
      * 构建验证器
      *
      * @return
      */
     public static FastValidator start() {
-        return new FastValidator();
+        return start(true);
     }
 
 
+    public static FastValidator start(boolean isFailFast) {
+        return new FastValidator(isFailFast);
+    }
     /**
      * 验证null
      *

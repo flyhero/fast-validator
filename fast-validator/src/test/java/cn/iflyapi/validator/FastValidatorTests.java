@@ -1,5 +1,6 @@
 package cn.iflyapi.validator;
 
+import cn.iflyapi.validator.core.FastValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,39 +14,36 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class FastValidatorTests {
 
-    @Test
+
+    @Test(expected = Exception.class)
     public void testOnNumber() {
         int num = 10;
+        Double d = 20.5d;
+        FastValidator.start().on(num, 1, 10).end();
+        FastValidator.start().on(d, 1, 10).end();
+        FastValidator.start().on(num, 1, 9).end();
     }
-//    @Test
-//    public void testOnNumber() {
-//        int num = 10;
-//        Double d = 20.5d;
-//        FastValidator.start().on(num, 1, 10).end();
-//        FastValidator.start().on(d, 1, 10).end();
-//        FastValidator.start().on(num, 1, 9).end();
-//    }
-//
-//    @Test
-//    public void testOnStr() {
-//        String s = "hello world";
-//        String s1 = "welcome to iflyapi";
-//        FastValidator.start().on(s, 1, 20).on(s1, 1, 8).end();
-//        FastValidator.start().on(s, 1, 10).end();
-//    }
-//
-//    @Test
-//    public void testNull() {
-//      //  FastValidator.start().notNull("nihao", "haha", null).end();
-//        Integer integer = new Integer(10);
-//        Integer b = null;
-//        int c = 0;
-//        FastValidator.start().notNull(b).notNull(c).end();
-//    }
-//
-//    @Test
-//    public void testOnMin(){
-//        int num = 10;
-//        FastValidator.start().onMin(num,2).onMax(num,9).end();
-//    }
+
+    @Test(expected = Exception.class)
+    public void testOnStr() {
+        String s = "hello world";
+        String s1 = "welcome to iflyapi";
+        FastValidator.start().on(s, 1, 20).on(s1, 1, 8).end();
+        FastValidator.start().on(s, 1, 10).end();
+    }
+
+    @Test(expected = Exception.class)
+    public void testNull() {
+        FastValidator.start().notNull("nihao", "haha", null).end();
+        Integer integer = new Integer(10);
+        Integer b = null;
+        int c = 0;
+        FastValidator.start().notNull(b).notNull(c).end();
+    }
+
+    @Test(expected = Exception.class)
+    public void testOnMin() {
+        int num = 10;
+        FastValidator.start().onMin(num, 2).onMax(num, 9).end();
+    }
 }
