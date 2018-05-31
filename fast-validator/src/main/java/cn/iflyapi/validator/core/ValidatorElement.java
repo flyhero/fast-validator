@@ -13,11 +13,19 @@ public class ValidatorElement {
     private Object value;
     private int min;
     private int max;
+    private String desc;
 
     public ValidatorElement(Object value, int min, int max) {
         this.value = Objects.requireNonNull(value);
         this.min = min;
         this.max = max;
+    }
+
+    public ValidatorElement(Object value, int min, int max, String desc) {
+        this.value = Objects.requireNonNull(value);;
+        this.min = min;
+        this.max = max;
+        this.desc = desc;
     }
 
     public Object getValue() {
@@ -42,5 +50,13 @@ public class ValidatorElement {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

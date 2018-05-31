@@ -38,6 +38,7 @@ public class FastValidator {
     public static FastValidator start(boolean isFailFast) {
         return new FastValidator(isFailFast);
     }
+
     /**
      * 验证null
      *
@@ -57,7 +58,11 @@ public class FastValidator {
      * @return
      */
     public FastValidator on(Object target, int min, int max) {
-        this.veLsit.add(new ValidatorElement(target, min, max));
+        return on(target, min, max, "");
+    }
+
+    public FastValidator on(Object target, int min, int max, String desc) {
+        this.veLsit.add(new ValidatorElement(target, min, max, desc));
         return this;
     }
 
@@ -73,6 +78,17 @@ public class FastValidator {
     }
 
     /**
+     * 验证最小值(包含自定义描述)
+     *
+     * @param target
+     * @param min
+     * @return
+     */
+    public FastValidator onMin(Object target, int min, String desc) {
+        return on(target, min, Integer.MAX_VALUE, desc);
+    }
+
+    /**
      * 验证最大值
      *
      * @param target
@@ -81,6 +97,17 @@ public class FastValidator {
      */
     public FastValidator onMax(Object target, int max) {
         return on(target, Integer.MIN_VALUE, max);
+    }
+
+    /**
+     * 验证最大值(包含自定义描述)
+     *
+     * @param target
+     * @param max
+     * @return
+     */
+    public FastValidator onMax(Object target, int max, String desc) {
+        return on(target, Integer.MIN_VALUE, max, desc);
     }
 
     /**
@@ -101,7 +128,7 @@ public class FastValidator {
             int min = validatorElement.getMin();
             int max = validatorElement.getMax();
             if (ReflectUtils.isNumber(o) || ReflectUtils.isString(o)) {
-                ValidatorUtils.checkRange(o, min, max);
+                ValidatorUtils.checkRange(o, min, max, validatorElement.getDesc());
             }
         });
     }
