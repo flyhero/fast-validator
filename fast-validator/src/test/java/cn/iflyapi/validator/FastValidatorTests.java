@@ -20,7 +20,7 @@ public class FastValidatorTests {
         int num = 10;
         Double d = 20.5d;
         FastValidator.start().on(num, 1, 10).end();
-        FastValidator.start().on(d, 1, 10).end();
+        FastValidator.start().on(d, 1, 10, "this is a test").end();
         FastValidator.start().on(num, 1, 9).end();
     }
 

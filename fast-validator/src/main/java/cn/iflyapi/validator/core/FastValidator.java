@@ -21,7 +21,7 @@ public class FastValidator {
 
     private boolean isFailFast = true;
 
-    public FastValidator(boolean isFailFast) {
+    private FastValidator(boolean isFailFast) {
         this.isFailFast = isFailFast;
     }
 
@@ -132,4 +132,5 @@ public class FastValidator {
             }
         });
     }
+
 }

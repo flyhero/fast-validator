@@ -33,10 +33,6 @@ public class NotNullAspect {
         String[] vs = notNull.value();
 
         for (Object o : args) {
-            Class<?> c = o.getClass();
-            System.out.println(o.getClass().isPrimitive());
-            System.out.println(o.getClass().getName());
-            System.out.println(o.getClass().getTypeName());
             for (String s : vs) {
                 if (!ReflectUtils.hasFieldIncludeSuper(o.getClass(), s)) {
                     continue;

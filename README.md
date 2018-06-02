@@ -26,7 +26,10 @@
 
 ## 如何引用
 
-1. pom文件加入依赖
+1. 首先你必须使用的是以spring boot 2 为基础的框架
+
+2. pom文件加入依赖
+
 ```xml
 <dependency>
 	<groupId>cn.iflyapi.validator</groupId>
@@ -34,8 +37,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
-
-2. 启动类配置
+3. 启动类配置
 
 ```java
 @ComponentScan("cn.iflyapi")
