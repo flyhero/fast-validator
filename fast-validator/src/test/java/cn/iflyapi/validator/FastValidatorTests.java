@@ -1,6 +1,7 @@
 package cn.iflyapi.validator;
 
 import cn.iflyapi.validator.core.FastValidator;
+import cn.iflyapi.validator.core.Result;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,6 +45,7 @@ public class FastValidatorTests {
     @Test(expected = Exception.class)
     public void testOnMin() {
         int num = 10;
-        FastValidator.start().onMin(num, 2).onMax(num, 9).end();
+        Result r = FastValidator.start().failSafe().onMin(num, 2).onMax(num, 9).end();
+        System.out.println(r.toString());
     }
 }

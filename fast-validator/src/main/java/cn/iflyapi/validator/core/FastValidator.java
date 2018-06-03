@@ -4,8 +4,11 @@ import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ArrayUtils;
 import cn.iflyapi.validator.util.ReflectUtils;
 import cn.iflyapi.validator.util.ValidatorUtils;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,11 +22,9 @@ public class FastValidator {
 
     private Object[] objects = new Object[0];
 
-    private boolean isFailFast = true;
+    private Result result = new Result();
 
-    private FastValidator(boolean isFailFast) {
-        this.isFailFast = isFailFast;
-    }
+    private boolean isFailFast = true;
 
     /**
      * 构建验证器
@@ -31,12 +32,25 @@ public class FastValidator {
      * @return
      */
     public static FastValidator start() {
-        return start(true);
+        return new FastValidator();
     }
 
+    /**
+     * 快速失败
+     * @return
+     */
+    public FastValidator failFast() {
+        this.isFailFast = true;
+        return this;
+    }
 
-    public static FastValidator start(boolean isFailFast) {
-        return new FastValidator(isFailFast);
+    /**
+     * 安全失败
+     * @return
+     */
+    public FastValidator failSafe() {
+        this.isFailFast = false;
+        return this;
     }
 
     /**
@@ -113,7 +127,9 @@ public class FastValidator {
     /**
      * 结束并验证
      */
-    public void end() {
+    public Result end() {
+
+        List<String> errors = new ArrayList<>();
 
         if (null != objects) {
             for (Object o : objects) {
@@ -128,9 +144,16 @@ public class FastValidator {
             int min = validatorElement.getMin();
             int max = validatorElement.getMax();
             if (ReflectUtils.isNumber(o) || ReflectUtils.isString(o)) {
-                ValidatorUtils.checkRange(o, min, max, validatorElement.getDesc());
+                String s = ValidatorUtils.checkRange(o, min, max, validatorElement.getDesc(), isFailFast);
+                if (!StringUtils.isEmpty(s)) {
+                    errors.add(s);
+                }
             }
         });
+
+        result.setErrors(errors);
+        result.setPassed(CollectionUtils.isEmpty(errors));
+        return result;
     }
 
 }
