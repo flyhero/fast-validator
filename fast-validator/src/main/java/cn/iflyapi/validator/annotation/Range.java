@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * @author: flyhero
  * @date: 2018-05-18 上午10:50
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Range {
