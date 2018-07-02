@@ -37,7 +37,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
-3. 启动类配置
+3. 启动类配置（如果你需要在方法上注解）
 
 ```java
 @ComponentScan("cn.iflyapi")

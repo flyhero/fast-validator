@@ -1,5 +1,9 @@
 package cn.iflyapi.validator.core;
 
+import cn.iflyapi.validator.annotation.Email;
+import cn.iflyapi.validator.annotation.IdCard;
+import cn.iflyapi.validator.annotation.NotNull;
+import cn.iflyapi.validator.annotation.Phone;
 import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ArrayUtils;
 import cn.iflyapi.validator.util.ReflectUtils;
@@ -7,6 +11,8 @@ import cn.iflyapi.validator.util.ValidatorUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -154,6 +160,35 @@ public class FastValidator {
         result.setErrors(errors);
         result.setPassed(CollectionUtils.isEmpty(errors));
         return result;
+    }
+
+    /**
+     * 校验类中属性注解
+     * @param value
+     */
+    public void check(Object value){
+        Class clazz = value.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            Annotation[] annotations = field.getAnnotations();
+            if (null == annotations) {
+                continue;
+            }
+
+            for (Annotation annotation : annotations) {
+                if (annotation instanceof NotNull) {
+                    if (Objects.isNull(ReflectUtils.fieldValue(value,field))) {
+                        throw new FastValidatorException(field.getName() +" can not be null");
+                    }
+                }else if (annotation instanceof Email) {
+
+                }else if (annotation instanceof IdCard) {
+
+                }else if (annotation instanceof Phone) {
+
+                }
+            }
+        }
     }
 
 }
