@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +23,7 @@ import java.util.Objects;
  */
 public class FastValidator {
 
-    private List<ValidatorElement> veLsit = new ArrayList<>();
+    private List<RangeElement> veLsit = new ArrayList<>();
 
     private Object[] objects = new Object[0];
 
@@ -82,7 +81,7 @@ public class FastValidator {
     }
 
     public FastValidator on(Object target, int min, int max, String desc) {
-        this.veLsit.add(new ValidatorElement(target, min, max, desc));
+        this.veLsit.add(new RangeElement(target, min, max, desc));
         return this;
     }
 

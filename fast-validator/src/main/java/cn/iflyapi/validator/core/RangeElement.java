@@ -8,20 +8,20 @@ import java.util.Objects;
  * @author flyhero <http://www.iflyapi.cn>
  * @date 2018/5/23 下午1:27
  */
-public class ValidatorElement {
+public class RangeElement {
 
     private Object value;
     private int min;
     private int max;
     private String desc;
 
-    public ValidatorElement(Object value, int min, int max) {
+    public RangeElement(Object value, int min, int max) {
         this.value = Objects.requireNonNull(value);
         this.min = min;
         this.max = max;
     }
 
-    public ValidatorElement(Object value, int min, int max, String desc) {
+    public RangeElement(Object value, int min, int max, String desc) {
         this.value = Objects.requireNonNull(value);;
         this.min = min;
         this.max = max;
