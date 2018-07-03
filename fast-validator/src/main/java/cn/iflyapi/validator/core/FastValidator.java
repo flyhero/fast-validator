@@ -4,6 +4,9 @@ import cn.iflyapi.validator.annotation.Email;
 import cn.iflyapi.validator.annotation.IdCard;
 import cn.iflyapi.validator.annotation.NotNull;
 import cn.iflyapi.validator.annotation.Phone;
+import cn.iflyapi.validator.element.RangeElement;
+import cn.iflyapi.validator.element.StringElement;
+import cn.iflyapi.validator.enums.ValidateDataEnum;
 import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ArrayUtils;
 import cn.iflyapi.validator.util.ReflectUtils;
@@ -23,9 +26,17 @@ import java.util.Objects;
  */
 public class FastValidator {
 
+    /**
+     * 待验证的范围
+     */
     private List<RangeElement> veLsit = new ArrayList<>();
 
     private Object[] objects = new Object[0];
+
+    /**
+     * 待验证的字符串（email,ip,phone等）
+     */
+    private List<StringElement> stringElements = new ArrayList<>();
 
     private Result result = new Result();
 
@@ -42,6 +53,7 @@ public class FastValidator {
 
     /**
      * 快速失败
+     *
      * @return
      */
     public FastValidator failFast() {
@@ -51,6 +63,7 @@ public class FastValidator {
 
     /**
      * 安全失败
+     *
      * @return
      */
     public FastValidator failSafe() {
@@ -130,6 +143,34 @@ public class FastValidator {
     }
 
     /**
+     * 验证邮箱
+     * @param target
+     * @return
+     */
+    public FastValidator onEmail(String target) {
+        this.stringElements.add(new StringElement(ValidateDataEnum.EMAIL.getCode(), target));
+        return this;
+    }
+    /**
+     * 验证IP
+     * @param target
+     * @return
+     */
+    public FastValidator onIP(String target) {
+        this.stringElements.add(new StringElement(ValidateDataEnum.IP.getCode(), target));
+        return this;
+    }
+    /**
+     * 验证身份证
+     * @param target
+     * @return
+     */
+    public FastValidator onIdCard(String target) {
+        this.stringElements.add(new StringElement(ValidateDataEnum.ID_CARD.getCode(), target));
+        return this;
+    }
+
+    /**
      * 结束并验证
      */
     public Result end() {
@@ -144,12 +185,12 @@ public class FastValidator {
             }
         }
 
-        veLsit.forEach(validatorElement -> {
-            Object o = validatorElement.getValue();
-            int min = validatorElement.getMin();
-            int max = validatorElement.getMax();
+        veLsit.forEach(rangeElement -> {
+            Object o = rangeElement.getValue();
+            int min = rangeElement.getMin();
+            int max = rangeElement.getMax();
             if (ReflectUtils.isNumber(o) || ReflectUtils.isString(o)) {
-                String s = ValidatorUtils.checkRange(o, min, max, validatorElement.getDesc(), isFailFast);
+                String s = ValidatorUtils.checkRange(o, min, max, rangeElement.getDesc(), isFailFast);
                 if (!StringUtils.isEmpty(s)) {
                     errors.add(s);
                 }
@@ -163,9 +204,10 @@ public class FastValidator {
 
     /**
      * 校验类中属性注解
+     *
      * @param value
      */
-    public void check(Object value){
+    public void check(Object value) {
         Class clazz = value.getClass();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
@@ -176,14 +218,14 @@ public class FastValidator {
 
             for (Annotation annotation : annotations) {
                 if (annotation instanceof NotNull) {
-                    if (Objects.isNull(ReflectUtils.fieldValue(value,field))) {
-                        throw new FastValidatorException(field.getName() +" can not be null");
+                    if (Objects.isNull(ReflectUtils.fieldValue(value, field))) {
+                        throw new FastValidatorException(field.getName() + " can not be null");
                     }
-                }else if (annotation instanceof Email) {
+                } else if (annotation instanceof Email) {
 
-                }else if (annotation instanceof IdCard) {
+                } else if (annotation instanceof IdCard) {
 
-                }else if (annotation instanceof Phone) {
+                } else if (annotation instanceof Phone) {
 
                 }
             }

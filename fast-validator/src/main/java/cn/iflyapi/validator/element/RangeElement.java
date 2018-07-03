@@ -1,4 +1,4 @@
-package cn.iflyapi.validator.core;
+package cn.iflyapi.validator.element;
 
 import java.util.Objects;
 
