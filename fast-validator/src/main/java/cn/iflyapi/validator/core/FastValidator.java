@@ -42,6 +42,7 @@ public class FastValidator {
 
     private boolean isFailFast = true;
 
+
     /**
      * 构建验证器
      *
@@ -144,6 +145,7 @@ public class FastValidator {
 
     /**
      * 验证邮箱
+     *
      * @param target
      * @return
      */
@@ -151,8 +153,10 @@ public class FastValidator {
         this.stringElements.add(new StringElement(ValidateDataEnum.EMAIL.getCode(), target));
         return this;
     }
+
     /**
      * 验证IP
+     *
      * @param target
      * @return
      */
@@ -160,8 +164,10 @@ public class FastValidator {
         this.stringElements.add(new StringElement(ValidateDataEnum.IP.getCode(), target));
         return this;
     }
+
     /**
      * 验证身份证
+     *
      * @param target
      * @return
      */
@@ -195,6 +201,33 @@ public class FastValidator {
                     errors.add(s);
                 }
             }
+        });
+
+        stringElements.forEach(stringElement -> {
+            String msg = "";
+            switch (stringElement.getType()) {
+                case 1:
+                    msg = ValidatorHandler.email(stringElement.getValue(), isFailFast);
+                    break;
+                case 2:
+                    msg = ValidatorHandler.idCard(stringElement.getValue(), isFailFast);
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    msg = ValidatorHandler.phone(stringElement.getValue(), isFailFast);
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+                default:
+                    break;
+            }
+
         });
 
         result.setErrors(errors);
