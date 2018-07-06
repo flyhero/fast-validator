@@ -244,6 +244,7 @@ public class FastValidator {
         Class clazz = value.getClass();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
+            String valid = (String)ReflectUtils.fieldValue(value,field);
             Annotation[] annotations = field.getAnnotations();
             if (null == annotations) {
                 continue;
@@ -251,13 +252,13 @@ public class FastValidator {
 
             for (Annotation annotation : annotations) {
                 if (annotation instanceof NotNull) {
-                    if (Objects.isNull(ReflectUtils.fieldValue(value, field))) {
+                    if (Objects.isNull(valid)) {
                         throw new FastValidatorException(field.getName() + " can not be null");
                     }
                 } else if (annotation instanceof Email) {
-
+                    onEmail(valid);
                 } else if (annotation instanceof IdCard) {
-
+                    onIdCard(valid);
                 } else if (annotation instanceof Phone) {
 
                 }
