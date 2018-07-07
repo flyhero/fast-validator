@@ -10,34 +10,42 @@ import cn.iflyapi.validator.util.RegexUtils;
  */
 public class ValidatorHandler {
 
-    public static String email(String email, boolean isFastFail) {
+    private boolean isFastFail;
+
+    private static final String EMPTY = "";
+
+    public ValidatorHandler(boolean isFastFail) {
+        this.isFastFail = isFastFail;
+    }
+
+    public String email(String email) {
         if (!RegexUtils.checkEmail(email)) {
             if (isFastFail) {
                 throw new FastValidatorException(MsgConstant.EMAIL);
             }
             return MsgConstant.EMAIL;
         }
-        return "";
+        return EMPTY;
     }
 
-    public static String phone(String phone, boolean isFastFail) {
+    public String phone(String phone) {
         if (!RegexUtils.checkPhone(phone)) {
             if (isFastFail) {
                 throw new FastValidatorException(MsgConstant.PHONE);
             }
             return MsgConstant.PHONE;
         }
-        return "";
+        return EMPTY;
     }
 
-    public static String idCard(String idCard, boolean isFastFail) {
+    public String idCard(String idCard) {
         if (!RegexUtils.checkIdCard(idCard)) {
             if (isFastFail) {
                 throw new FastValidatorException(MsgConstant.ID_CARD);
             }
             return MsgConstant.ID_CARD;
         }
-        return "";
+        return EMPTY;
     }
 
 }

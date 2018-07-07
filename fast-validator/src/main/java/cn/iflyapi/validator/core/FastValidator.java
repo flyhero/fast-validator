@@ -42,6 +42,8 @@ public class FastValidator {
 
     private boolean isFailFast = true;
 
+    private ValidatorHandler validatorHandler = new ValidatorHandler(true);
+
 
     /**
      * 构建验证器
@@ -69,6 +71,7 @@ public class FastValidator {
      */
     public FastValidator failSafe() {
         this.isFailFast = false;
+        this.validatorHandler = new ValidatorHandler(isFailFast);
         return this;
     }
 
@@ -177,6 +180,17 @@ public class FastValidator {
     }
 
     /**
+     * 验证手机号
+     *
+     * @param target
+     * @return
+     */
+    public FastValidator onPhone(String target) {
+        this.stringElements.add(new StringElement(ValidateDataEnum.PHONE.getCode(), target));
+        return this;
+    }
+
+    /**
      * 结束并验证
      */
     public Result end() {
@@ -207,16 +221,16 @@ public class FastValidator {
             String msg = "";
             switch (stringElement.getType()) {
                 case 1:
-                    msg = ValidatorHandler.email(stringElement.getValue(), isFailFast);
+                    msg = validatorHandler.email(stringElement.getValue());
                     break;
                 case 2:
-                    msg = ValidatorHandler.idCard(stringElement.getValue(), isFailFast);
+                    msg = validatorHandler.idCard(stringElement.getValue());
                     break;
                 case 3:
 
                     break;
                 case 4:
-                    msg = ValidatorHandler.phone(stringElement.getValue(), isFailFast);
+                    msg = validatorHandler.phone(stringElement.getValue());
                     break;
                 case 5:
 
@@ -226,6 +240,9 @@ public class FastValidator {
                     break;
                 default:
                     break;
+            }
+            if (!"".equals(msg)) {
+                errors.add(msg);
             }
 
         });
@@ -244,7 +261,7 @@ public class FastValidator {
         Class clazz = value.getClass();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
-            String valid = (String)ReflectUtils.fieldValue(value,field);
+            String valid = (String) ReflectUtils.fieldValue(value, field);
             Annotation[] annotations = field.getAnnotations();
             if (null == annotations) {
                 continue;
@@ -260,7 +277,7 @@ public class FastValidator {
                 } else if (annotation instanceof IdCard) {
                     onIdCard(valid);
                 } else if (annotation instanceof Phone) {
-
+                    onPhone(valid);
                 }
             }
         }
