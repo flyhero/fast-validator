@@ -48,4 +48,12 @@ public class FastValidatorTests {
         Result r = FastValidator.start().failSafe().onMin(num, 2).onMax(num, 9).end();
         System.out.println(r.toString());
     }
+
+    @Test
+    public void testCheck() {
+        User user = new User();
+        user.setEmail("qfwang@163.com");
+        user.setCard("23");
+        FastValidator.start().check(user).end();
+    }
 }

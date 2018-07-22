@@ -61,6 +61,7 @@ public class FastValidator {
      */
     public FastValidator failFast() {
         this.isFailFast = true;
+        this.validatorHandler = new ValidatorHandler(isFailFast);
         return this;
     }
 
@@ -257,7 +258,7 @@ public class FastValidator {
      *
      * @param value
      */
-    public void check(Object value) {
+    public FastValidator check(Object value) {
         Class clazz = value.getClass();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
@@ -269,9 +270,7 @@ public class FastValidator {
 
             for (Annotation annotation : annotations) {
                 if (annotation instanceof NotNull) {
-                    if (Objects.isNull(valid)) {
-                        throw new FastValidatorException(field.getName() + " can not be null");
-                    }
+                    notNull(valid);
                 } else if (annotation instanceof Email) {
                     onEmail(valid);
                 } else if (annotation instanceof IdCard) {
@@ -281,6 +280,8 @@ public class FastValidator {
                 }
             }
         }
+
+        return this;
     }
 
 }
