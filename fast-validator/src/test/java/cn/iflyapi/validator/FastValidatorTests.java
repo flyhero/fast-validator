@@ -53,7 +53,8 @@ public class FastValidatorTests {
     public void testCheck() {
         User user = new User();
         user.setEmail("qfwang@163.com");
-        user.setCard("23");
+//        user.setCard("23");
+        user.setPhone("15721720868");
         FastValidator.start().check(user).end();
     }
 }

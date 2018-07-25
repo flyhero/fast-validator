@@ -1,9 +1,6 @@
 package cn.iflyapi.validator;
 
-import cn.iflyapi.validator.annotation.Email;
-import cn.iflyapi.validator.annotation.IdCard;
-import cn.iflyapi.validator.annotation.NotNull;
-import cn.iflyapi.validator.annotation.Range;
+import cn.iflyapi.validator.annotation.*;
 
 /**
  * @author: qfwang
@@ -14,8 +11,11 @@ public class User {
     @Email("邮箱")
     private String email;
 
-    @IdCard
+//    @IdCard
     private String card;
+
+    @Phone
+    private String phone;
 
     public String getEmail() {
         return email;
@@ -31,6 +31,14 @@ public class User {
 
     public void setCard(String card) {
         this.card = card;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
