@@ -43,4 +43,14 @@
 @ComponentScan("cn.iflyapi")
 ```
                    
-                      
+## 支持验证方式
+
+- 基于属性注解验证
+
+- 直接传入参数验证
+
+- 方法注解验证                      
+
+## TODO 
+ 
+- 除去依赖spring boot
