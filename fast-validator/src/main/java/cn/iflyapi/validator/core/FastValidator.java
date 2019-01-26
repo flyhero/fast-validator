@@ -16,9 +16,7 @@ import org.springframework.util.StringUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author flyhero <http://www.iflyapi.cn>
@@ -50,7 +48,7 @@ public class FastValidator {
      *
      * @return
      */
-    public static FastValidator start() {
+    public static FastValidator doit() {
         return new FastValidator();
     }
 
@@ -83,6 +81,71 @@ public class FastValidator {
      */
     public FastValidator notNull(Object... objects) {
         this.objects = ArrayUtils.concat(this.objects, objects);
+        return this;
+    }
+
+    /**
+     * 验证空
+     *
+     * @param target
+     * @param fieldName
+     * @return
+     */
+    public FastValidator notEmpty(Object target, String fieldName) {
+        if (null == target) {
+            throw new FastValidatorException(fieldName + "不能为空");
+        }
+        if (target instanceof String) {
+            String s = (String) target;
+            if (s.isEmpty()) {
+                throw new FastValidatorException(fieldName + "不能为空");
+            }
+        } else if (target instanceof Collection) {
+            Collection collection = (Collection) target;
+            if (collection.isEmpty()) {
+                throw new FastValidatorException(fieldName + "不能为空");
+            }
+        } else if (target instanceof Map) {
+            Map map = (Map) target;
+            if (map.isEmpty()) {
+                throw new FastValidatorException(fieldName + "不能为空");
+            }
+        }
+        return this;
+    }
+
+
+    /**
+     * 如果不为空再进行验证最大值
+     *
+     * @param target
+     * @param max
+     * @param fieldName
+     * @return
+     */
+    public FastValidator ifNotEmptyOnMax(Object target, int max, String fieldName) {
+        if (null == target) {
+            return this;
+        } else {
+            onMax(target, max);
+        }
+        return this;
+    }
+
+    /**
+     * 如果不为空再进行验证最小值
+     *
+     * @param target
+     * @param min
+     * @param fieldName
+     * @return
+     */
+    public FastValidator ifNotEmptyOnMin(Object target, int min, String fieldName) {
+        if (null == target) {
+            return this;
+        } else {
+            onMin(target, min);
+        }
         return this;
     }
 
