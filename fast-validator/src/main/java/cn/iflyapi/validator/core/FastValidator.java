@@ -19,6 +19,8 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 /**
+ * TODO 快速失败时抛出异常，否则汇集结果返回
+ *
  * @author flyhero <http://www.iflyapi.cn>
  * @date 2018/5/23 下午1:28
  */
@@ -93,27 +95,43 @@ public class FastValidator {
      */
     public FastValidator notEmpty(Object target, String fieldName) {
         if (null == target) {
-            throw new FastValidatorException(fieldName + "不能为空");
+            result(fieldName);
         }
         if (target instanceof String) {
             String s = (String) target;
             if (s.isEmpty()) {
-                throw new FastValidatorException(fieldName + "不能为空");
+                result(fieldName);
             }
         } else if (target instanceof Collection) {
             Collection collection = (Collection) target;
             if (collection.isEmpty()) {
-                throw new FastValidatorException(fieldName + "不能为空");
+                result(fieldName);
             }
         } else if (target instanceof Map) {
             Map map = (Map) target;
             if (map.isEmpty()) {
-                throw new FastValidatorException(fieldName + "不能为空");
+                result(fieldName);
             }
         }
         return this;
     }
 
+    /**
+     * 获取验证结果
+     *
+     * @return
+     */
+    public Result toResult() {
+        return result;
+    }
+
+    private void result(String fieldName) {
+        if (isFailFast) {
+            throw new FastValidatorException(fieldName + "不能为空");
+        } else {
+            result.getErrors().add(fieldName + "不能为空");
+        }
+    }
 
     /**
      * 如果不为空再进行验证最大值
