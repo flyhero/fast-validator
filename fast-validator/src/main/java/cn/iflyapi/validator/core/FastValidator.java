@@ -95,22 +95,22 @@ public class FastValidator {
      */
     public FastValidator notEmpty(Object target, String fieldName) {
         if (null == target) {
-            result(fieldName);
+            emptyResult(fieldName);
         }
         if (target instanceof String) {
             String s = (String) target;
             if (s.isEmpty()) {
-                result(fieldName);
+                emptyResult(fieldName);
             }
         } else if (target instanceof Collection) {
             Collection collection = (Collection) target;
             if (collection.isEmpty()) {
-                result(fieldName);
+                emptyResult(fieldName);
             }
         } else if (target instanceof Map) {
             Map map = (Map) target;
             if (map.isEmpty()) {
-                result(fieldName);
+                emptyResult(fieldName);
             }
         }
         return this;
@@ -125,11 +125,37 @@ public class FastValidator {
         return result;
     }
 
-    private void result(String fieldName) {
+    /**
+     * 参数为空的结果
+     *
+     * @param fieldName
+     */
+    private void emptyResult(String fieldName) {
         if (isFailFast) {
             throw new FastValidatorException(fieldName + "不能为空");
         } else {
             result.getErrors().add(fieldName + "不能为空");
+        }
+    }
+
+    /**
+     * 参数超出范围的接口
+     *
+     * @param fieldName
+     * @param min
+     * @param max
+     */
+    private void rangeResult(String fieldName, int min, int max) {
+        if (isFailFast) {
+            throw new FastValidatorException(fieldName + "不能超出" + min + "到" + max + "的范围");
+        } else {
+            result.getErrors().add(fieldName + "不能超出" + min + "到" + max + "的范围");
+        }
+    }
+
+    private void formatResult(String msg) {
+        if (!msg.isEmpty()) {
+            result.getErrors().add(msg);
         }
     }
 
@@ -179,8 +205,61 @@ public class FastValidator {
         return on(target, min, max, "");
     }
 
-    public FastValidator on(Object target, int min, int max, String desc) {
-        this.veLsit.add(new RangeElement(target, min, max, desc));
+    public FastValidator on(Object target, int min, int max, String fieldName) {
+//        this.veLsit.add(new RangeElement(target, min, max, fieldName));
+        notEmpty(target, fieldName);
+        if (!isFailFast) {
+            return this;
+        }
+
+        if (target instanceof String) {
+            String s = (String) target;
+            if (s.length() > max || s.length() < min) {
+                rangeResult(fieldName, min, max);
+            }
+        } else if (target instanceof Collection) {
+            Collection collection = (Collection) target;
+            if (collection.size() > max || collection.size() < min) {
+                rangeResult(fieldName, min, max);
+            }
+        } else if (target instanceof Map) {
+            Map map = (Map) target;
+            if (map.size() > max || map.size() < min) {
+                rangeResult(fieldName, min, max);
+            }
+        }else if (target instanceof Number) {
+            if (target instanceof Integer) {
+                int num = (int) target;
+                if (num < min || num > max){
+                    rangeResult(fieldName, min, max);
+                }
+            } else if (target instanceof Double) {
+                double num = (double) target;
+                if (num < min || num > max){
+                    rangeResult(fieldName, min, max);
+                }
+            } else if (target instanceof Float) {
+                float num = (float) target;
+                if (num < min || num > max){
+                    rangeResult(fieldName, min, max);
+                }
+            } else if (target instanceof Long) {
+                long num = (long) target;
+                if (num < min || num > max){
+                    rangeResult(fieldName, min, max);
+                }
+            } else if (target instanceof Short) {
+                short num = (short) target;
+                if (num < min || num > max){
+                    rangeResult(fieldName, min, max);
+                }
+            } else if (target instanceof Byte) {
+                byte num = (byte) target;
+                if (num < min || num > max){
+                    rangeResult(fieldName, min, max);
+                }
+            }
+        }
         return this;
     }
 
@@ -224,8 +303,8 @@ public class FastValidator {
      * @param max
      * @return
      */
-    public FastValidator onMax(Object target, int max, String desc) {
-        return on(target, Integer.MIN_VALUE, max, desc);
+    public FastValidator onMax(Object target, int max, String fieldName) {
+        return on(target, Integer.MIN_VALUE, max, fieldName);
     }
 
     /**
@@ -234,19 +313,8 @@ public class FastValidator {
      * @param target
      * @return
      */
-    public FastValidator onEmail(String target) {
-        this.stringElements.add(new StringElement(ValidateDataEnum.EMAIL.getCode(), target));
-        return this;
-    }
-
-    /**
-     * 验证IP
-     *
-     * @param target
-     * @return
-     */
-    public FastValidator onIP(String target) {
-        this.stringElements.add(new StringElement(ValidateDataEnum.IP.getCode(), target));
+    public FastValidator mustEmail(String target) {
+        formatResult(validatorHandler.email(target));
         return this;
     }
 
@@ -256,8 +324,8 @@ public class FastValidator {
      * @param target
      * @return
      */
-    public FastValidator onIdCard(String target) {
-        this.stringElements.add(new StringElement(ValidateDataEnum.ID_CARD.getCode(), target));
+    public FastValidator mustIdCard(String target) {
+        formatResult(validatorHandler.idCard(target));
         return this;
     }
 
@@ -267,8 +335,8 @@ public class FastValidator {
      * @param target
      * @return
      */
-    public FastValidator onPhone(String target) {
-        this.stringElements.add(new StringElement(ValidateDataEnum.PHONE.getCode(), target));
+    public FastValidator mustPhone(String target) {
+        formatResult(validatorHandler.phone(target));
         return this;
     }
 
@@ -299,36 +367,6 @@ public class FastValidator {
             }
         });
 
-        stringElements.forEach(stringElement -> {
-            String msg = "";
-            switch (stringElement.getType()) {
-                case 1:
-                    msg = validatorHandler.email(stringElement.getValue());
-                    break;
-                case 2:
-                    msg = validatorHandler.idCard(stringElement.getValue());
-                    break;
-                case 3:
-
-                    break;
-                case 4:
-                    msg = validatorHandler.phone(stringElement.getValue());
-                    break;
-                case 5:
-
-                    break;
-                case 6:
-
-                    break;
-                default:
-                    break;
-            }
-            if (!"".equals(msg)) {
-                errors.add(msg);
-            }
-
-        });
-
         result.setErrors(errors);
         result.setPassed(CollectionUtils.isEmpty(errors));
         return result;
@@ -353,11 +391,11 @@ public class FastValidator {
                 if (annotation instanceof NotNull) {
                     notNull(valid);
                 } else if (annotation instanceof Email) {
-                    onEmail(valid);
+                    mustEmail(valid);
                 } else if (annotation instanceof IdCard) {
-                    onIdCard(valid);
+                    mustIdCard(valid);
                 } else if (annotation instanceof Phone) {
-                    onPhone(valid);
+                    mustPhone(valid);
                 }
             }
         }
