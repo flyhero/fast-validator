@@ -40,7 +40,7 @@
 3. 启动类配置（如果你需要在方法上注解）
 
 ```java
-@ComponentScan("cn.iflyapi")
+@ComponentScan("cn.iflyapi.validator")
 ```
                    
 ## 支持验证方式
@@ -50,7 +50,3 @@
 - 直接传入参数验证
 
 - 方法注解验证                      
-
-## TODO 
- 
-- 除去依赖spring boot

@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class FastValidatorTests {
 
-
+/*
     @Test(expected = Exception.class)
     public void testOnNumber() {
         int num = 10;
@@ -55,6 +55,6 @@ public class FastValidatorTests {
         user.setEmail("qfwang@163.com");
 //        user.setCard("23");
         user.setPhone("15721720868");
-        FastValidator.doit().check(user).end();
-    }
+//        FastValidator.doit().check(user).end();
+    }*/
 }

@@ -33,11 +33,6 @@ public class FastValidator {
 
     private Object[] objects = new Object[0];
 
-    /**
-     * 待验证的字符串（email,ip,phone等）
-     */
-    private List<StringElement> stringElements = new ArrayList<>();
-
     private Result result = new Result();
 
     private boolean isFailFast = true;
@@ -77,16 +72,6 @@ public class FastValidator {
     }
 
     /**
-     * 验证null
-     *
-     * @param objects
-     */
-    public FastValidator notNull(Object... objects) {
-        this.objects = ArrayUtils.concat(this.objects, objects);
-        return this;
-    }
-
-    /**
      * 验证空
      *
      * @param target
@@ -116,48 +101,6 @@ public class FastValidator {
         return this;
     }
 
-    /**
-     * 获取验证结果
-     *
-     * @return
-     */
-    public Result toResult() {
-        return result;
-    }
-
-    /**
-     * 参数为空的结果
-     *
-     * @param fieldName
-     */
-    private void emptyResult(String fieldName) {
-        if (isFailFast) {
-            throw new FastValidatorException(fieldName + "不能为空");
-        } else {
-            result.getErrors().add(fieldName + "不能为空");
-        }
-    }
-
-    /**
-     * 参数超出范围的接口
-     *
-     * @param fieldName
-     * @param min
-     * @param max
-     */
-    private void rangeResult(String fieldName, int min, int max) {
-        if (isFailFast) {
-            throw new FastValidatorException(fieldName + "不能超出" + min + "到" + max + "的范围");
-        } else {
-            result.getErrors().add(fieldName + "不能超出" + min + "到" + max + "的范围");
-        }
-    }
-
-    private void formatResult(String msg) {
-        if (!msg.isEmpty()) {
-            result.getErrors().add(msg);
-        }
-    }
 
     /**
      * 如果不为空再进行验证最大值
@@ -340,67 +283,49 @@ public class FastValidator {
         return this;
     }
 
+
+
     /**
-     * 结束并验证
+     * 获取验证结果
+     *
+     * @return
      */
-    public Result end() {
-
-        List<String> errors = new ArrayList<>();
-
-        if (null != objects) {
-            for (Object o : objects) {
-                if (Objects.isNull(o)) {
-                    throw new FastValidatorException("params can not be null or \" \"");
-                }
-            }
-        }
-
-        veLsit.forEach(rangeElement -> {
-            Object o = rangeElement.getValue();
-            int min = rangeElement.getMin();
-            int max = rangeElement.getMax();
-            if (ReflectUtils.isNumber(o) || ReflectUtils.isString(o)) {
-                String s = ValidatorUtils.checkRange(o, min, max, rangeElement.getDesc(), isFailFast);
-                if (!StringUtils.isEmpty(s)) {
-                    errors.add(s);
-                }
-            }
-        });
-
-        result.setErrors(errors);
-        result.setPassed(CollectionUtils.isEmpty(errors));
+    public Result toResult() {
         return result;
     }
 
     /**
-     * 校验类中属性注解
+     * 参数为空的结果
      *
-     * @param value
+     * @param fieldName
      */
-    public FastValidator check(Object value) {
-        Class clazz = value.getClass();
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field : fields) {
-            String valid = (String) ReflectUtils.fieldValue(value, field);
-            Annotation[] annotations = field.getAnnotations();
-            if (null == annotations) {
-                continue;
-            }
-
-            for (Annotation annotation : annotations) {
-                if (annotation instanceof NotNull) {
-                    notNull(valid);
-                } else if (annotation instanceof Email) {
-                    mustEmail(valid);
-                } else if (annotation instanceof IdCard) {
-                    mustIdCard(valid);
-                } else if (annotation instanceof Phone) {
-                    mustPhone(valid);
-                }
-            }
+    private void emptyResult(String fieldName) {
+        if (isFailFast) {
+            throw new FastValidatorException(fieldName + "不能为空");
+        } else {
+            result.getErrors().add(fieldName + "不能为空");
         }
+    }
 
-        return this;
+    /**
+     * 参数超出范围的接口
+     *
+     * @param fieldName
+     * @param min
+     * @param max
+     */
+    private void rangeResult(String fieldName, int min, int max) {
+        if (isFailFast) {
+            throw new FastValidatorException(fieldName + "不能超出" + min + "到" + max + "的范围");
+        } else {
+            result.getErrors().add(fieldName + "不能超出" + min + "到" + max + "的范围");
+        }
+    }
+
+    private void formatResult(String msg) {
+        if (!msg.isEmpty()) {
+            result.getErrors().add(msg);
+        }
     }
 
 }
