@@ -1,21 +1,8 @@
 package cn.iflyapi.validator.core;
 
-import cn.iflyapi.validator.annotation.Email;
-import cn.iflyapi.validator.annotation.IdCard;
-import cn.iflyapi.validator.annotation.NotNull;
-import cn.iflyapi.validator.annotation.Phone;
 import cn.iflyapi.validator.element.RangeElement;
-import cn.iflyapi.validator.element.StringElement;
-import cn.iflyapi.validator.enums.ValidateDataEnum;
 import cn.iflyapi.validator.exception.FastValidatorException;
-import cn.iflyapi.validator.util.ArrayUtils;
-import cn.iflyapi.validator.util.ReflectUtils;
-import cn.iflyapi.validator.util.ValidatorUtils;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -149,11 +136,8 @@ public class FastValidator {
     }
 
     public FastValidator on(Object target, int min, int max, String fieldName) {
-//        this.veLsit.add(new RangeElement(target, min, max, fieldName));
+
         notEmpty(target, fieldName);
-        if (!isFailFast) {
-            return this;
-        }
 
         if (target instanceof String) {
             String s = (String) target;
@@ -303,7 +287,7 @@ public class FastValidator {
         if (isFailFast) {
             throw new FastValidatorException(fieldName + "不能为空");
         } else {
-            result.getErrors().add(fieldName + "不能为空");
+            formatResult(fieldName + "不能为空");
         }
     }
 
@@ -318,7 +302,7 @@ public class FastValidator {
         if (isFailFast) {
             throw new FastValidatorException(fieldName + "不能超出" + min + "到" + max + "的范围");
         } else {
-            result.getErrors().add(fieldName + "不能超出" + min + "到" + max + "的范围");
+            formatResult(fieldName + "不能超出" + min + "到" + max + "的范围");
         }
     }
 
