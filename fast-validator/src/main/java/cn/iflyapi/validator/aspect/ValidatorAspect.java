@@ -1,7 +1,7 @@
 package cn.iflyapi.validator.aspect;
 
 
-import cn.iflyapi.validator.annotation.NotNull;
+import cn.iflyapi.validator.annotation.NotEmpty;
 import cn.iflyapi.validator.annotation.Range;
 import cn.iflyapi.validator.annotation.Validator;
 import cn.iflyapi.validator.exception.FastValidatorException;
@@ -40,8 +40,8 @@ public class ValidatorAspect {
         Validator validator = method.getAnnotation(Validator.class);
 
         //不能为空的属性
-        NotNull notNull = validator.notNull();
-        String[] vs = notNull.value();
+        NotEmpty notEmpty = validator.notNull();
+        String[] vs = notEmpty.value();
 
         Range[] ranges = validator.range();
 

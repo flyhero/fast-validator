@@ -1,6 +1,6 @@
 package cn.iflyapi.validator.aspect;
 
-import cn.iflyapi.validator.annotation.NotNull;
+import cn.iflyapi.validator.annotation.NotEmpty;
 import cn.iflyapi.validator.exception.FastValidatorException;
 import cn.iflyapi.validator.util.ReflectUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -20,7 +20,7 @@ import java.util.Objects;
 @Aspect
 public class NotNullAspect {
 
-    @Pointcut(value = "@annotation(cn.iflyapi.validator.annotation.NotNull)")
+    @Pointcut(value = "@annotation(cn.iflyapi.validator.annotation.NotEmpty)")
     public void pointCut() {
     }
 
@@ -29,8 +29,8 @@ public class NotNullAspect {
         Object[] args = joinPoint.getArgs();
 
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        NotNull notNull = methodSignature.getMethod().getAnnotation(NotNull.class);
-        String[] vs = notNull.value();
+        NotEmpty notEmpty = methodSignature.getMethod().getAnnotation(NotEmpty.class);
+        String[] vs = notEmpty.value();
 
         for (Object o : args) {
             for (String s : vs) {

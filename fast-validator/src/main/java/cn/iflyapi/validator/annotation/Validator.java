@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 public @interface Validator {
     String value() default "";
 
-    NotNull notNull() default @NotNull;
+    NotEmpty notNull() default @NotEmpty;
 
     Range[] range() default {@Range()};
 }
