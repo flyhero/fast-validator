@@ -3,7 +3,10 @@ package cn.iflyapi.validator.core;
 import cn.iflyapi.validator.element.RangeElement;
 import cn.iflyapi.validator.exception.FastValidatorException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * TODO 快速失败时抛出异常，否则汇集结果返回
@@ -84,10 +87,48 @@ public class FastValidator {
             if (map.isEmpty()) {
                 emptyResult(fieldName);
             }
+        } else if (target.getClass().isArray()) {
+            if (target instanceof String[]) {
+                String[] s = (String[]) target;
+                if (s.length == 0) {
+                    emptyResult(fieldName);
+                }
+            } else if (target instanceof Integer[]) {
+                Integer[] s = (Integer[]) target;
+                if (s.length == 0) {
+                    emptyResult(fieldName);
+                }
+            } else if (target instanceof Long[]) {
+                Long[] s = (Long[]) target;
+                if (s.length == 0) {
+                    emptyResult(fieldName);
+                }
+            } else if (target instanceof Double[]) {
+                Double[] s = (Double[]) target;
+                if (s.length == 0) {
+                    emptyResult(fieldName);
+                }
+            } else if (target instanceof Byte[]) {
+                Byte[] s = (Byte[]) target;
+                if (s.length == 0) {
+                    emptyResult(fieldName);
+                }
+            } else if (target instanceof Short[]) {
+                Short[] s = (Short[]) target;
+                if (s.length == 0) {
+                    emptyResult(fieldName);
+                }
+            } else {
+                throw new RuntimeException("不支持该类型");
+            }
         }
         return this;
     }
 
+    public static void main(String[] args) {
+        String s[] = new String[0];
+        FastValidator.doit().notEmpty(s, "test");
+    }
 
     /**
      * 如果不为空再进行验证最大值
@@ -123,6 +164,8 @@ public class FastValidator {
         return this;
     }
 
+    //============================ 范围验证 开始=============================
+
     /**
      * 添加验证元素(包含最大小值)
      *
@@ -154,35 +197,35 @@ public class FastValidator {
             if (map.size() > max || map.size() < min) {
                 rangeResult(fieldName, min, max);
             }
-        }else if (target instanceof Number) {
+        } else if (target instanceof Number) {
             if (target instanceof Integer) {
                 int num = (int) target;
-                if (num < min || num > max){
+                if (num < min || num > max) {
                     rangeResult(fieldName, min, max);
                 }
             } else if (target instanceof Double) {
                 double num = (double) target;
-                if (num < min || num > max){
+                if (num < min || num > max) {
                     rangeResult(fieldName, min, max);
                 }
             } else if (target instanceof Float) {
                 float num = (float) target;
-                if (num < min || num > max){
+                if (num < min || num > max) {
                     rangeResult(fieldName, min, max);
                 }
             } else if (target instanceof Long) {
                 long num = (long) target;
-                if (num < min || num > max){
+                if (num < min || num > max) {
                     rangeResult(fieldName, min, max);
                 }
             } else if (target instanceof Short) {
                 short num = (short) target;
-                if (num < min || num > max){
+                if (num < min || num > max) {
                     rangeResult(fieldName, min, max);
                 }
             } else if (target instanceof Byte) {
                 byte num = (byte) target;
-                if (num < min || num > max){
+                if (num < min || num > max) {
                     rangeResult(fieldName, min, max);
                 }
             }
@@ -234,6 +277,11 @@ public class FastValidator {
         return on(target, Integer.MIN_VALUE, max, fieldName);
     }
 
+    //============================ 范围验证 结束=============================
+
+
+    //============================ 格式验证 开始=============================
+
     /**
      * 验证邮箱
      *
@@ -267,7 +315,7 @@ public class FastValidator {
         return this;
     }
 
-
+    //============================ 格式验证 结束=============================
 
     /**
      * 获取验证结果
