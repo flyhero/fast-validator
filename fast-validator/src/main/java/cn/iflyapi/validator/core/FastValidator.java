@@ -1,27 +1,16 @@
 package cn.iflyapi.validator.core;
 
-import cn.iflyapi.validator.element.RangeElement;
 import cn.iflyapi.validator.exception.FastValidatorException;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 /**
- * TODO 快速失败时抛出异常，否则汇集结果返回
  *
  * @author flyhero <http://www.iflyapi.cn>
  * @date 2018/5/23 下午1:28
  */
 public class FastValidator {
-
-    /**
-     * 待验证的范围
-     */
-    private List<RangeElement> veLsit = new ArrayList<>();
-
-    private Object[] objects = new Object[0];
 
     private Result result = new Result();
 
@@ -125,10 +114,6 @@ public class FastValidator {
         return this;
     }
 
-    public static void main(String[] args) {
-        String s[] = new String[0];
-        FastValidator.doit().notEmpty(s, "test");
-    }
 
     /**
      * 如果不为空再进行验证最大值
