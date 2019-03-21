@@ -1,12 +1,12 @@
 package cn.iflyapi.validator.core;
 
 import cn.iflyapi.validator.exception.FastValidatorException;
+import cn.iflyapi.validator.util.RegexUtils;
 
 import java.util.Collection;
 import java.util.Map;
 
 /**
- *
  * @author flyhero <http://www.iflyapi.cn>
  * @date 2018/5/23 下午1:28
  */
@@ -15,8 +15,6 @@ public class FastValidator {
     private Result result = new Result();
 
     private boolean isFailFast = true;
-
-    private ValidatorHandler validatorHandler = new ValidatorHandler(true);
 
 
     /**
@@ -35,7 +33,6 @@ public class FastValidator {
      */
     public FastValidator failFast() {
         this.isFailFast = true;
-        this.validatorHandler = new ValidatorHandler(isFailFast);
         return this;
     }
 
@@ -46,7 +43,6 @@ public class FastValidator {
      */
     public FastValidator failSafe() {
         this.isFailFast = false;
-        this.validatorHandler = new ValidatorHandler(isFailFast);
         return this;
     }
 
@@ -274,7 +270,9 @@ public class FastValidator {
      * @return
      */
     public FastValidator mustEmail(String target) {
-        formatResult(validatorHandler.email(target));
+        if (!RegexUtils.checkEmail(target)) {
+            typeResult("邮箱");
+        }
         return this;
     }
 
@@ -285,7 +283,9 @@ public class FastValidator {
      * @return
      */
     public FastValidator mustIdCard(String target) {
-        formatResult(validatorHandler.idCard(target));
+        if (!RegexUtils.checkIdCard(target)) {
+            typeResult("身份证号");
+        }
         return this;
     }
 
@@ -296,7 +296,9 @@ public class FastValidator {
      * @return
      */
     public FastValidator mustPhone(String target) {
-        formatResult(validatorHandler.phone(target));
+        if (!RegexUtils.checkPhone(target)) {
+            typeResult("手机号");
+        }
         return this;
     }
 
@@ -336,6 +338,14 @@ public class FastValidator {
             throw new FastValidatorException(fieldName + "不能超出" + min + "到" + max + "的范围");
         } else {
             formatResult(fieldName + "不能超出" + min + "到" + max + "的范围");
+        }
+    }
+
+    private void typeResult(String fieldName) {
+        if (isFailFast) {
+            throw new FastValidatorException(fieldName + " 格式不正确！");
+        } else {
+            formatResult(fieldName + " 格式不正确！");
         }
     }
 
