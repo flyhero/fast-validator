@@ -258,6 +258,99 @@ public class FastValidator {
         return on(target, Integer.MIN_VALUE, max, fieldName);
     }
 
+
+    /**
+     * 目标值必须为正数
+     *
+     * @param target
+     * @param fieldName
+     * @return
+     */
+    public FastValidator positive(Object target, String fieldName) {
+        if (!(target instanceof Number)) {
+            throw new FastValidatorException(fieldName + "必须为数字！");
+        } else {
+            if (target instanceof Integer) {
+                int num = (int) target;
+                if (num > 0) {
+                    positiveResult(fieldName);
+                }
+            } else if (target instanceof Double) {
+                double num = (double) target;
+                if (num > 0) {
+                    positiveResult(fieldName);
+                }
+            } else if (target instanceof Float) {
+                float num = (float) target;
+                if (num > 0) {
+                    positiveResult(fieldName);
+                }
+            } else if (target instanceof Long) {
+                long num = (long) target;
+                if (num > 0) {
+                    positiveResult(fieldName);
+                }
+            } else if (target instanceof Short) {
+                short num = (short) target;
+                if (num > 0) {
+                    positiveResult(fieldName);
+                }
+            } else if (target instanceof Byte) {
+                byte num = (byte) target;
+                if (num > 0) {
+                    positiveResult(fieldName);
+                }
+            }
+        }
+        return this;
+    }
+
+    /**
+     * 目标值必须为负数
+     *
+     * @param target
+     * @param fieldName
+     * @return
+     */
+    public FastValidator negative(Object target, String fieldName) {
+        if (!(target instanceof Number)) {
+            throw new FastValidatorException(fieldName + "必须为数字！");
+        } else {
+            if (target instanceof Integer) {
+                int num = (int) target;
+                if (num < 0) {
+                    negativeResult(fieldName);
+                }
+            } else if (target instanceof Double) {
+                double num = (double) target;
+                if (num < 0) {
+                    negativeResult(fieldName);
+                }
+            } else if (target instanceof Float) {
+                float num = (float) target;
+                if (num < 0) {
+                    negativeResult(fieldName);
+                }
+            } else if (target instanceof Long) {
+                long num = (long) target;
+                if (num < 0) {
+                    negativeResult(fieldName);
+                }
+            } else if (target instanceof Short) {
+                short num = (short) target;
+                if (num < 0) {
+                    negativeResult(fieldName);
+                }
+            } else if (target instanceof Byte) {
+                byte num = (byte) target;
+                if (num < 0) {
+                    negativeResult(fieldName);
+                }
+            }
+        }
+        return this;
+    }
+
     //============================ 范围验证 结束=============================
 
 
@@ -338,6 +431,22 @@ public class FastValidator {
             throw new FastValidatorException(fieldName + "不能超出" + min + "到" + max + "的范围");
         } else {
             formatResult(fieldName + "不能超出" + min + "到" + max + "的范围");
+        }
+    }
+
+    private void positiveResult(String fieldName) {
+        if (isFailFast) {
+            throw new FastValidatorException(fieldName + "必须为正数！");
+        } else {
+            formatResult(fieldName + "必须为正数！");
+        }
+    }
+
+    private void negativeResult(String fieldName) {
+        if (isFailFast) {
+            throw new FastValidatorException(fieldName + "必须为负数！");
+        } else {
+            formatResult(fieldName + "必须为负数！");
         }
     }
 
