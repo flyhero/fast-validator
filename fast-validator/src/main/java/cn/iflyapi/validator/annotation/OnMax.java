@@ -11,4 +11,5 @@ import java.lang.annotation.*;
 @Documented
 public @interface OnMax {
     long value() default 0;
+    String desc() default "";
 }
