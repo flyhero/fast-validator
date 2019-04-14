@@ -3,8 +3,8 @@ package cn.iflyapi.validator.core;
 import java.util.List;
 
 /**
- * @author: flyhero
- * @date: 2018-06-02 下午5:58
+ * @author flyhero
+ * @date 2018-06-02 下午5:58
  */
 public class Result {
     private boolean isPassed;

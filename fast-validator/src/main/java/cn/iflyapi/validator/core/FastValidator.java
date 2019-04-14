@@ -1,6 +1,7 @@
 package cn.iflyapi.validator.core;
 
 import cn.iflyapi.validator.exception.FastValidatorException;
+import cn.iflyapi.validator.exception.NotSupportException;
 import cn.iflyapi.validator.util.RegexUtils;
 
 import java.util.Collection;
@@ -104,7 +105,7 @@ public class FastValidator {
                     emptyResult(fieldName);
                 }
             } else {
-                throw new RuntimeException("不支持该类型");
+                throw new NotSupportException("不支持该类型");
             }
         }
         return this;
@@ -155,11 +156,11 @@ public class FastValidator {
      * @param max
      * @return
      */
-    public FastValidator on(Object target, int min, int max) {
+    public FastValidator on(Object target, long min, long max) {
         return on(target, min, max, "");
     }
 
-    public FastValidator on(Object target, int min, int max, String fieldName) {
+    public FastValidator on(Object target, long min, long max, String fieldName) {
 
         notEmpty(target, fieldName);
 
@@ -221,7 +222,7 @@ public class FastValidator {
      * @param min
      * @return
      */
-    public FastValidator onMin(Object target, int min) {
+    public FastValidator onMin(Object target, long min) {
         return on(target, min, Integer.MAX_VALUE);
     }
 
@@ -232,7 +233,7 @@ public class FastValidator {
      * @param min
      * @return
      */
-    public FastValidator onMin(Object target, int min, String desc) {
+    public FastValidator onMin(Object target, long min, String desc) {
         return on(target, min, Integer.MAX_VALUE, desc);
     }
 
@@ -243,8 +244,8 @@ public class FastValidator {
      * @param max
      * @return
      */
-    public FastValidator onMax(Object target, int max) {
-        return on(target, Integer.MIN_VALUE, max);
+    public FastValidator onMax(Object target, long max) {
+        return on(target, Long.MIN_VALUE, max);
     }
 
     /**
@@ -254,8 +255,8 @@ public class FastValidator {
      * @param max
      * @return
      */
-    public FastValidator onMax(Object target, int max, String fieldName) {
-        return on(target, Integer.MIN_VALUE, max, fieldName);
+    public FastValidator onMax(Object target, long max, String fieldName) {
+        return on(target, Long.MIN_VALUE, max, fieldName);
     }
 
 
@@ -426,7 +427,7 @@ public class FastValidator {
      * @param min
      * @param max
      */
-    private void rangeResult(String fieldName, int min, int max) {
+    private void rangeResult(String fieldName, long min, long max) {
         if (isFailFast) {
             throw new FastValidatorException(fieldName + "不能超出" + min + "到" + max + "的范围");
         } else {
