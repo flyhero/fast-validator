@@ -1,7 +1,7 @@
 package cn.iflyapi.validator.exception;
 
 /**
- * @author qfwang
+ * @author flyhero
  * @date 2018-05-22 下午2:44
  */
 public class FastValidatorException extends RuntimeException {
