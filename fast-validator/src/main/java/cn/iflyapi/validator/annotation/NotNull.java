@@ -4,11 +4,11 @@ import java.lang.annotation.*;
 
 /**
  * @author flyhero
- * @date 2018-05-17 下午5:16
+ * @date 2019-04-06 9:15 PM
  */
-@Target({ElementType.METHOD,ElementType.FIELD})
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface NotEmpty {
+public @interface NotNull {
     String value() default "";
 }

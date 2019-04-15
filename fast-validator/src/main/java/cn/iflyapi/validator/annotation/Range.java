@@ -3,8 +3,8 @@ package cn.iflyapi.validator.annotation;
 import java.lang.annotation.*;
 
 /**
- * @author: flyhero
- * @date: 2018-05-18 上午10:50
+ * @author flyhero
+ * @date 2018-05-18 上午10:50
  */
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

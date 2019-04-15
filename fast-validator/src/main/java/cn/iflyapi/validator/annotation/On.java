@@ -4,11 +4,16 @@ import java.lang.annotation.*;
 
 /**
  * @author flyhero
- * @date 2018-06-02 下午5:38
+ * @date 2019-04-06 9:05 PM
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface IdCard {
-    String value() default "";
+public @interface On {
+
+    long min() default Long.MIN_VALUE;
+
+    long max() default Long.MAX_VALUE;
+
+    String desc() default "";
 }
