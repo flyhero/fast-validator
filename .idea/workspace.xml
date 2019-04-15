@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27714e51-f701-44e5-92f8-928396e3e562" name="Default" comment="refactor: 删除无用的函数">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
+    <list default="true" id="27714e51-f701-44e5-92f8-928396e3e562" name="Default" comment="test:测试">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator-demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/FastValidatorDemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/FastValidatorDemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/controller/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/controller/DemoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/dto/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/service/IDemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/service/IDemoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/iflyapi/validator/demo/service/impl/DemoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/service/impl/DemoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator-demo/src/test/java/cn/iflyapi/validator/demo/FastValidatorDemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator-demo/src/test/java/cn/demo/FastValidatorDemoApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator-parent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator-parent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/core/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/core/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -44,8 +31,9 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="5" />
+          <entry key="gitignore" value="1" />
           <entry key="java" value="168" />
-          <entry key="md" value="4" />
+          <entry key="md" value="5" />
           <entry key="pom" value="2" />
           <entry key="properties" value="2" />
           <entry key="xml" value="13" />
@@ -54,8 +42,9 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="5" />
+          <entry key="Git file" value="1" />
           <entry key="JAVA" value="168" />
-          <entry key="Markdown" value="4" />
+          <entry key="Markdown" value="5" />
           <entry key="Properties" value="2" />
           <entry key="XML" value="15" />
         </counts>
@@ -65,7 +54,7 @@
           <entry key="dummy" value="5" />
           <entry key="java" value="3281" />
           <entry key="md" value="21" />
-          <entry key="txt" value="251" />
+          <entry key="txt" value="280" />
           <entry key="xml" value="27" />
         </counts>
       </usages-collector>
@@ -73,7 +62,7 @@
         <counts>
           <entry key="JAVA" value="3280" />
           <entry key="Markdown" value="21" />
-          <entry key="PLAIN_TEXT" value="256" />
+          <entry key="PLAIN_TEXT" value="285" />
           <entry key="Pointcut Expression" value="1" />
           <entry key="XML" value="27" />
         </counts>
@@ -123,28 +112,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fast-validator-demo/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/controller/DemoController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="262">
               <caret line="33" column="72" selection-start-line="33" selection-start-column="72" selection-end-line="33" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/service/IDemoService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -179,11 +150,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/dto/Test2.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
               <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="817">
+                <caret line="43" selection-start-line="43" selection-end-line="43" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="215">
+              <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -388,91 +380,6 @@
             <path>
               <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="validator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="validator" type="462c0819:PsiDirectoryNode" />
-              <item name="aspect" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="validator" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="validator" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="validator" type="462c0819:PsiDirectoryNode" />
-              <item name="handler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fast-validator-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="fast-validator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="validator" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fast-validator-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -795,7 +702,7 @@
       <workItem from="1555214023292" duration="2231000" />
       <workItem from="1555220932676" duration="1000000" />
       <workItem from="1555238846857" duration="5684000" />
-      <workItem from="1555311866334" duration="2995000" />
+      <workItem from="1555311866334" duration="3191000" />
     </task>
     <task id="LOCAL-00001" summary="feat:增加新的验证方法">
       <created>1548506820766</created>
@@ -923,7 +830,21 @@
       <option name="project" value="LOCAL" />
       <updated>1555315426249</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="fix:属性默认初始数组以防空指针">
+      <created>1555328940525</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1555328940525</updated>
+    </task>
+    <task id="LOCAL-00020" summary="test:测试">
+      <created>1555329017275</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1555329017275</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -959,13 +880,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126101000" />
+    <option name="totallyTimeSpent" value="126297000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49879518" visible="true" weight="0.26609442" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49879518" visible="true" weight="0.26609442" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1053,7 +973,9 @@
     <MESSAGE value="feat:增加注解" />
     <MESSAGE value="feat:注解对应的处理器" />
     <MESSAGE value="feat:参数校验切面验证" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:参数校验切面验证" />
+    <MESSAGE value="fix:属性默认初始数组以防空指针" />
+    <MESSAGE value="test:测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="test:测试" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1068,13 +990,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/local/maven-repository/org/aspectj/aspectjweaver/1.9.2/aspectjweaver-1.9.2.jar!/org/aspectj/lang/annotation/Pointcut.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/annotation/Positive.java" />
     <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/annotation/Negative.java" />
     <entry file="file://$PROJECT_DIR$/fast-validator-demo/src/main/java/cn/demo/config/ValidConfig.java" />
@@ -1144,16 +1059,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/element/RangeElement.java" />
     <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/element/StringElement.java" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="663">
-            <caret line="43" selection-start-line="43" selection-end-line="43" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fast-validator/src/main/java/cn/iflyapi/validator/annotation/Validator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1414,6 +1319,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="817">
+            <caret line="43" selection-start-line="43" selection-end-line="43" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
         </state>
       </provider>
     </entry>
