@@ -1,10 +1,10 @@
-package cn.iflyapi.validator.demo.dto;
+package cn.demo.dto;
 
 /**
- * @author: qfwang
+ * @author: flyhero
  * @date: 2018-05-27 下午2:02
  */
-public class UserDTO {
+public class User {
 
     private String name;
 
@@ -58,7 +58,7 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" +
+        return "User{" +
                 "name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +

@@ -13,7 +13,7 @@
     <bytecodeTargetLevel target="1.8">
       <module name="fast-validator" target="1.8" />
       <module name="fast-validator-demo" target="1.8" />
-      <module name="fast-validator-parent" target="1.7" />
+      <module name="fast-validator-parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
