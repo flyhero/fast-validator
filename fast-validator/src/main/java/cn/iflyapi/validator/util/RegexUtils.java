@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author: qfwang
+ * @author: flyhero
  * @date: 2018-07-04 下午8:16
  */
 public class RegexUtils {

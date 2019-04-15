@@ -19,9 +19,10 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 
 /**
- * @author: qfwang
- * @date: 2018-05-18 下午2:35
+ * @author flyhero
+ * @date 2018-05-18 下午2:35
  */
+@Deprecated
 @Aspect
 @Component
 public class ValidatorAspect {
@@ -41,11 +42,11 @@ public class ValidatorAspect {
 
         //不能为空的属性
         NotEmpty notEmpty = validator.notNull();
-        String[] vs = notEmpty.value();
+//        String[] vs = notEmpty.value();
 
         Range[] ranges = validator.range();
 
-        isValid(targetObj, vs, ranges);
+//        isValid(targetObj, vs, ranges);
 
         return joinPoint.proceed();
     }
