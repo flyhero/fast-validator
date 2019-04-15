@@ -1,5 +1,6 @@
 package cn.iflyapi.validator.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public class Result {
     private boolean isPassed;
-    private List<String> errors;
+    private List<String> errors = new ArrayList<>();
 
     public boolean isPassed() {
         return isPassed;
